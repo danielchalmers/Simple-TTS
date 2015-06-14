@@ -84,7 +84,7 @@
         <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"/>
         <Grid x:Name="sidebar2pad3" Grid.Column="1" Grid.Row="3">
             <TextBlock x:Name="txtWord" TextAlignment="Center" Foreground="Gray" HorizontalAlignment="Stretch"
-                       VerticalAlignment="Center" Grid.Column="0" />
+                       VerticalAlignment="Center" Grid.Column="0" TextTrimming="CharacterEllipsis"/>
         </Grid>
     </Grid>
 </Window>
