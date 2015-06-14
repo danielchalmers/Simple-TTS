@@ -49,6 +49,8 @@ namespace SimpleTTSReader
 
             // Start update checker.
             _updateChecker.Start();
+
+            txtDoc.Focus();
         }
 
         public string DocText
@@ -89,8 +91,6 @@ namespace SimpleTTSReader
 
                 txtDoc.SelectionBrush = Brushes.Yellow;
                 txtDoc.IsReadOnly = true;
-
-                txtDoc.Focus();
             }
             else
             {
@@ -206,6 +206,11 @@ namespace SimpleTTSReader
             var files = (string[]) e.Data.GetData(DataFormats.FileDrop);
             if (files != null && files.Length != 0)
                 OpenFile(files[0]);
+            e.Handled = true;
+        }
+
+        private void txtDoc_OnLostFocus(object sender, RoutedEventArgs e)
+        {
             e.Handled = true;
         }
     }
