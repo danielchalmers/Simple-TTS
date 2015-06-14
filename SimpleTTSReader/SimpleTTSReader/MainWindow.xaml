@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SimpleTTSReader"
         xmlns:properties="clr-namespace:SimpleTTSReader.Properties"
         mc:Ignorable="d"
-        Title="Simple TTS Reader" Height="800" Width="600" Closing="Window_Closing">
+        Title="Simple TTS Reader" Width="800" Height="600" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="170" />
