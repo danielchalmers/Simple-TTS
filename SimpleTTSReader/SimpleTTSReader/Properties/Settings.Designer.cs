@@ -82,5 +82,17 @@ namespace SimpleTTSReader.Properties {
                 this["Height"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Male")]
+        public string Gender {
+            get {
+                return ((string)(this["Gender"]));
+            }
+            set {
+                this["Gender"] = value;
+            }
+        }
     }
 }

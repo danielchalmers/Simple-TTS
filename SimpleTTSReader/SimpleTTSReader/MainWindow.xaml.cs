@@ -29,6 +29,8 @@ namespace SimpleTTSReader
                 Settings.Default.MustUpgrade = false;
                 Settings.Default.Save();
             }
+            
+            cbGender.Text = Settings.Default.Gender;
 
             _synthesizer = new SpeechSynthesizer();
             _synthesizer.SpeakStarted += (sender, args) => SetPauseVisibilityState(true);
@@ -92,6 +94,8 @@ namespace SimpleTTSReader
             _synthesizer.Rate = (int) (sliderSpeed.Value - 10);
             _synthesizer.Volume = (int) (sliderVolume.Value*5);
 
+            _synthesizer.SelectVoiceByHints(Settings.Default.Gender == "Female" ? VoiceGender.Female :  VoiceGender.Male);
+
             _synthesizer.SpeakAsync(_currentPrompt);
         }
 
@@ -116,6 +120,7 @@ namespace SimpleTTSReader
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            Settings.Default.Gender = cbGender.Text;
             Settings.Default.Save();
         }
     }

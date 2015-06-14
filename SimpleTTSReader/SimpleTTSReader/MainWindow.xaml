@@ -40,6 +40,13 @@
                    VerticalAlignment="Top" />
             <Label x:Name="lblSpeed" Content="Speed:" HorizontalAlignment="Left" Margin="10,41,0,0"
                    VerticalAlignment="Top" />
+            <ComboBox x:Name="cbGender" HorizontalAlignment="Left" Margin="68,77,0,0"
+            	VerticalAlignment="Top" Width="92" Height="21">
+                <ComboBoxItem Content="Male"/>
+                <ComboBoxItem Content="Female"/>
+            </ComboBox>
+            <Label x:Name="lblGender" Content="Gender:" HorizontalAlignment="Left" Margin="10,72,0,0"
+            	VerticalAlignment="Top" />
         </Grid>
         <Grid x:Name="sidebar2" Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
