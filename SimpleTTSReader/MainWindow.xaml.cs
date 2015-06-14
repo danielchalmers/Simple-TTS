@@ -108,6 +108,7 @@ namespace SimpleTTSReader
                 txtDoc.IsReadOnly = false;
 
                 txtDoc.SelectionStart = 0;
+                txtDoc.Select(0, 0);
 
                 btnStart.Focus();
             }
