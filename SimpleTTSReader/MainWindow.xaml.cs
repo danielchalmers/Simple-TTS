@@ -200,7 +200,7 @@ namespace SimpleTTSReader
         {
             var dia = new OpenFileDialog();
             dia.ShowDialog();
-            txtDoc.Text = File.ReadAllText(dia.FileName);
+            OpenFile(dia.FileName);
         }
 
         private void MenuItemSaveAs_Click(object sender, RoutedEventArgs e)
@@ -208,6 +208,35 @@ namespace SimpleTTSReader
             var dia = new SaveFileDialog();
             dia.ShowDialog();
             File.WriteAllText(dia.FileName, txtDoc.Text);
+        }
+
+        private void OpenFile(string path)
+        {
+            if (txtDoc.Text.Length > 0 &&
+                MessageBox.Show("Are you sure you want to open this file? You will lose all current text.",
+                    "Simple TTS Reader", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.No)
+                return;
+
+            txtDoc.Text = File.ReadAllText(path);
+        }
+
+        private void txtDoc_PreviewDragEnter(object sender, DragEventArgs e)
+        {
+            if (_synthesizer.State == SynthesizerState.Speaking)
+                return;
+            e.Effects = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
+            e.Handled = true;
+        }
+
+        private void txtDoc_PreviewDrop(object sender, DragEventArgs e)
+        {
+            if (_synthesizer.State == SynthesizerState.Speaking)
+                return;
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files != null && files.Length != 0)
+                OpenFile(files[0]);
+            e.Handled = true;
         }
     }
 }

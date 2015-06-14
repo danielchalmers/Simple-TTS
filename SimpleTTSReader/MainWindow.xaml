@@ -74,7 +74,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtDoc" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+            <TextBox x:Name="txtDoc" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                 AllowDrop="True" 
+                 PreviewDragEnter="txtDoc_PreviewDragEnter" 
+                 PreviewDragOver="txtDoc_PreviewDragEnter" 
+                 PreviewDrop="txtDoc_PreviewDrop" />
         </Grid>
         <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1"/>
         <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"/>
