@@ -44,26 +44,28 @@
         </Menu>
 
         <Grid x:Name="sidebar1" Grid.Column="0" Grid.Row="2">
-            <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="10,10,0,0"
-                    VerticalAlignment="Top" Width="150" Height="30" Click="btnStart_Click" />
-            <Button x:Name="btnPause" Content="Pause" HorizontalAlignment="Left" Margin="10,45,0,0"
-                    VerticalAlignment="Top" Width="150" Height="30" Click="btnPause_Click" IsEnabled="False" />
-            <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="10,80,0,0"
-                    VerticalAlignment="Top" Width="150" Height="30" Click="btnStop_Click" IsEnabled="False" />
+            <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Stretch" Margin="10,10,10,0"
+                    VerticalAlignment="Top" Height="30" Click="btnStart_Click" />
+            <Button x:Name="btnPause" Content="Pause" HorizontalAlignment="Stretch" Margin="10,45,10,0"
+                    VerticalAlignment="Top" Height="30" Click="btnPause_Click" IsEnabled="False" />
+            <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Stretch" Margin="10,80,10,0"
+                    VerticalAlignment="Top" Height="30" Click="btnStop_Click" IsEnabled="False" />
 
         </Grid>
         <Grid x:Name="sidebar3" Grid.Column="2" Grid.Row="2">
+            <TextBlock x:Name="lblVolume" Text="Volume:" HorizontalAlignment="Left" Margin="10,10,0,0"
+                       VerticalAlignment="Top" />
             <Slider x:Name="sliderVolume" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="58,10,0,0"
                     VerticalAlignment="Top"
                     Value="{Binding Source={x:Static properties:Settings.Default}, Path=Volume,Mode=TwoWay}"
                     AutoToolTipPlacement="TopLeft" Width="102" />
+            <TextBlock x:Name="lblSpeed" Text="Speed:" HorizontalAlignment="Left" Margin="10,37,0,0"
+                       VerticalAlignment="Top" />
             <Slider x:Name="sliderSpeed" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="58,37,0,0"
                     VerticalAlignment="Top"
                     Value="{Binding Source={x:Static properties:Settings.Default}, Path=Speed,Mode=TwoWay}"
                     AutoToolTipPlacement="TopLeft" Width="102" />
-            <TextBlock x:Name="lblVolume" Text="Volume:" HorizontalAlignment="Left" Margin="10,10,0,0"
-                       VerticalAlignment="Top" />
-            <TextBlock x:Name="lblSpeed" Text="Speed:" HorizontalAlignment="Left" Margin="10,37,0,0"
+            <TextBlock x:Name="lblGender" Text="Gender:" HorizontalAlignment="Left" Margin="10,64,0,0"
                        VerticalAlignment="Top" />
             <ComboBox x:Name="cbGender" HorizontalAlignment="Left" Margin="58,64,0,0"
                       VerticalAlignment="Top" Width="102"
@@ -71,8 +73,6 @@
                 <ComboBoxItem Content="Male" />
                 <ComboBoxItem Content="Female" />
             </ComboBox>
-            <TextBlock x:Name="lblGender" Text="Gender:" HorizontalAlignment="Left" Margin="10,64,0,0"
-                       VerticalAlignment="Top" />
             <Button x:Name="btnResetSettings" HorizontalAlignment="Stretch" Margin="10,0"
                       VerticalAlignment="Bottom" Content="Default settings..." Click="btnResetSettings_Click" Height="23"/>
         </Grid>
