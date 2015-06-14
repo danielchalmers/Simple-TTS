@@ -109,6 +109,7 @@ namespace SimpleTTSReader
                 cbGender.IsEnabled = false;
 
                 txtDoc.SelectionBrush = Brushes.Yellow;
+                txtDoc.IsReadOnly = true;
 
                 txtDoc.Focus();
             }
@@ -126,6 +127,7 @@ namespace SimpleTTSReader
                 txtWord.Text = string.Empty;
 
                 txtDoc.SelectionBrush = new SolidColorBrush(SystemColors.HighlightColor);
+                txtDoc.IsReadOnly = false;
 
                 txtDoc.SelectionStart = 0;
 
