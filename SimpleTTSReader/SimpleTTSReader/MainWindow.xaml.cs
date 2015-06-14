@@ -1,5 +1,8 @@
 ﻿#region
 
+using System;
+using System.Deployment.Application;
+using System.Reflection;
 using System.Speech.Synthesis;
 using System.Windows;
 
@@ -22,6 +25,17 @@ namespace SimpleTTSReader
             _synthesizer.SpeakStarted += (sender, args) => SetPauseVisibilityState(true);
             _synthesizer.SpeakCompleted += (sender, args) => SetPauseVisibilityState(false);
             _synthesizer.SpeakProgress += Synthesizer_OnSpeakProgress;
+
+            Title = $"Simple TTS Reader (Beta {GetVersion()})";
+        }
+
+        private static string GetVersion()
+        {
+            var obj = ApplicationDeployment.IsNetworkDeployed
+                ? ApplicationDeployment.CurrentDeployment.
+                    CurrentVersion
+                : Assembly.GetExecutingAssembly().GetName().Version;
+            return $"{obj.Major}.{obj.Minor}.{obj.Build}";
         }
 
         private void Synthesizer_OnSpeakProgress(object sender, SpeakProgressEventArgs e)
