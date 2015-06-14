@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 using Microsoft.Win32;
 using SimpleTTSReader.Properties;
 
@@ -23,7 +24,6 @@ namespace SimpleTTSReader
         private readonly SpeechSynthesizer _synthesizer;
         private Prompt _currentPrompt;
         private int WordOffset = 0;
-
 
         public MainWindow()
         {
@@ -108,6 +108,8 @@ namespace SimpleTTSReader
                 sliderVolume.IsEnabled = false;
                 cbGender.IsEnabled = false;
 
+                txtDoc.SelectionBrush = Brushes.Yellow;
+
                 txtDoc.Focus();
             }
             else
@@ -122,6 +124,8 @@ namespace SimpleTTSReader
                 cbGender.IsEnabled = true;
 
                 txtWord.Text = string.Empty;
+
+                txtDoc.SelectionBrush = new SolidColorBrush(SystemColors.HighlightColor);
 
                 txtDoc.SelectionStart = 0;
 
