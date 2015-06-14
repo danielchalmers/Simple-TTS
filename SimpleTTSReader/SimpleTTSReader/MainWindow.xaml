@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="Simple TTS Reader" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="sidebar1" Grid.Column="0">
+            
+        </StackPanel>
+        <StackPanel x:Name="sidebar2" Grid.Column="1">
+            
+        </StackPanel>
+        <StackPanel x:Name="sidebar3"  Grid.Column="2">
+            
+        </StackPanel>
     </Grid>
 </Window>
