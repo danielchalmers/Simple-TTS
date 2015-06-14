@@ -3,10 +3,12 @@
 using System;
 using System.ComponentModel;
 using System.Deployment.Application;
+using System.IO;
 using System.Reflection;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Windows;
+using Microsoft.Win32;
 using SimpleTTSReader.Properties;
 
 #endregion
@@ -169,6 +171,25 @@ namespace SimpleTTSReader
             Settings.Default.SelectionStart = txtDoc.SelectionStart;
             Settings.Default.Gender = cbGender.Text;
             Settings.Default.Save();
+        }
+
+        private void MenuItemExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        {
+            var dia = new OpenFileDialog();
+            dia.ShowDialog();
+            txtDoc.Text = File.ReadAllText(dia.FileName);
+        }
+
+        private void MenuItemSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            var dia = new SaveFileDialog();
+            dia.ShowDialog();
+            File.WriteAllText(dia.FileName, txtDoc.Text);
         }
     }
 }

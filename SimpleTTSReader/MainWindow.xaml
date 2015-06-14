@@ -14,11 +14,33 @@
             <ColumnDefinition Width="170" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
-        <Grid x:Name="sidebar1" Grid.Column="0" Grid.Row="1">
+
+        <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open..." Click="MenuItemOpen_Click"/>
+                <Separator/>
+                <MenuItem Header="Save _As..." Click="MenuItemSaveAs_Click"/>
+                <Separator/>
+                <MenuItem Header="E_xit" Click="MenuItemExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Undo" Command="Undo"/>
+                <Separator/>
+                <MenuItem Header="Cu_t" Command="Cut"/>
+                <MenuItem Header="_Copy" Command="Copy"/>
+                <MenuItem Header="_Paste" Command="Paste"/>
+                <MenuItem Header="De_lete" Command="Delete"/>
+                <Separator/>
+                <MenuItem Header="Select _All" Command="SelectAll"/>
+            </MenuItem>
+        </Menu>
+
+        <Grid x:Name="sidebar1" Grid.Column="0" Grid.Row="2">
             <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="10,10,0,0"
                     VerticalAlignment="Top" Width="150" Height="30" Click="btnStart_Click" />
             <Button x:Name="btnPause" Content="Pause" HorizontalAlignment="Left" Margin="10,45,0,0"
@@ -27,7 +49,7 @@
                     VerticalAlignment="Top" Width="150" Height="30" Click="btnStop_Click" IsEnabled="False" />
 
         </Grid>
-        <Grid x:Name="sidebar3" Grid.Column="2" Grid.Row="1">
+        <Grid x:Name="sidebar3" Grid.Column="2" Grid.Row="2">
             <Slider x:Name="sliderVolume" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="68,15,0,0"
                     VerticalAlignment="Top" Width="92" Height="21"
                     Value="{Binding Source={x:Static properties:Settings.Default}, Path=Volume,Mode=TwoWay}"
@@ -48,15 +70,15 @@
             <Label x:Name="lblGender" Content="Gender:" HorizontalAlignment="Left" Margin="10,72,0,0"
             	VerticalAlignment="Top" />
         </Grid>
-        <Grid x:Name="sidebar2" Grid.Column="1" Grid.Row="1">
+        <Grid x:Name="sidebar2" Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBox x:Name="txtDoc" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
         </Grid>
-        <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
-        <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2"/>
-        <Grid x:Name="sidebar2pad3" Grid.Column="1" Grid.Row="2">
+        <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"/>
+        <Grid x:Name="sidebar2pad3" Grid.Column="1" Grid.Row="3">
             <TextBlock x:Name="txtWord" TextAlignment="Center" Foreground="Gray" HorizontalAlignment="Stretch"
                        VerticalAlignment="Center" Grid.Column="0" />
         </Grid>
