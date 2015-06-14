@@ -73,6 +73,8 @@
             </ComboBox>
             <TextBlock x:Name="lblGender" Text="Gender:" HorizontalAlignment="Left" Margin="10,64,0,0"
                        VerticalAlignment="Top" />
+            <Button x:Name="btnResetSettings" HorizontalAlignment="Stretch" Margin="10,0"
+                      VerticalAlignment="Bottom" Content="Default settings..." Click="btnResetSettings_Click" Height="23"/>
         </Grid>
         <Grid x:Name="sidebar2" Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>

@@ -143,6 +143,17 @@ namespace SimpleTTSReader
             _speechEngine.Stop();
         }
 
+        private void btnResetSettings_Click(object sender, RoutedEventArgs e)
+        {
+            if (Popup.Show("Are you sure you want to reset all settings to default?\nThis cannot be undone.",
+                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Settings.Default.Reset();
+                Settings.Default.MustUpgrade = false;
+                Settings.Default.Launches = 1;
+            }
+        }
+        
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             Settings.Default.Doc = txtDoc.Text;
