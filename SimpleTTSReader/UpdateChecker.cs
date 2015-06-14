@@ -13,7 +13,7 @@ namespace SimpleTTSReader
 
         public UpdateChecker()
         {
-            _updateTimer.Tick += (sender, args) => ClickOnceHelper.CheckForUpdates();
+            _updateTimer.Tick += (sender, args) => ClickOnceHelper.CheckForUpdatesSilent();
             _updateTimer.Interval = new TimeSpan(1, 0, 0);
         }
 

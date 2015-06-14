@@ -2,6 +2,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Speech.Synthesis;
 using System.Windows;
@@ -212,6 +213,17 @@ namespace SimpleTTSReader
         private void txtDoc_OnLostFocus(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void MenuItemAbout_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dia = new About();
+            dia.ShowDialog();
+        }
+
+        private void MenuItemUpdates_OnClick(object sender, RoutedEventArgs e)
+        {
+            ClickOnceHelper.CheckForUpdates();
         }
     }
 }

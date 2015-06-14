@@ -55,5 +55,17 @@ namespace SimpleTTSReader
                 $"If you have any issues or requests, you can report them at \"{Resources.GitHubIssues}\".");
             return example.ToString();
         }
+
+        public static string GetAboutDescription()
+        {
+            var example = new StringBuilder();
+            example.AppendLine($"Simple TTS Reader (v{GetVersion()}).");
+            example.AppendLine();
+            example.AppendLine($"Issues: {Resources.GitHubIssues}");
+            example.AppendLine($"Donations: {Resources.DonateLink}");
+            example.AppendLine();
+            example.AppendLine($"Icons are made by Google (https://www.google.com) from Flaticon (http://www.flaticon.com) and are licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)");
+            return example.ToString();
+        }
     }
 }

@@ -41,6 +41,11 @@
                 <Separator />
                 <MenuItem Header="Select _All" Command="SelectAll" />
             </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="Check for _Updates..." Click="MenuItemUpdates_OnClick" />
+                <Separator />
+                <MenuItem Header="_About..." Click="MenuItemAbout_OnClick" />
+            </MenuItem>
         </Menu>
 
         <Grid x:Name="sidebar1" Grid.Column="0" Grid.Row="2">
