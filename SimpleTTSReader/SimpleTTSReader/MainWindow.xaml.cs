@@ -50,13 +50,13 @@ namespace SimpleTTSReader
                 example.AppendLine($"WARNING: This application is currently in beta and may have issues.");
                 example.AppendLine();
                 example.AppendLine($"Hello {Environment.UserName}.");
-                example.AppendLine();
+                example.AppendLine($"Welcome to Simple Text to Speech Reader {GetVersion()}.");
                 example.AppendLine();
                 example.AppendLine($"If you want to change Text to Speech voice properties such as gender, speed, and volume, use the options on the right.");
                 example.AppendLine($"To start, stop, or pause voice playback, use the buttons on the left.");
-                example.AppendLine($"You can find settings, help, etc in the menu above.");
+                //example.AppendLine($"You can find settings, help, etc in the menu above.");
                 example.AppendLine();
-                example.AppendLine($"If you have any feature requests, bugs, etc you can report them at \"{Properties.Resources.GitHubIssues}\".");
+                example.AppendLine($"If you have any issues or requests, you can report them at \"{Properties.Resources.GitHubIssues}\".");
                 txtDoc.Text = example.ToString();
 
                 Start();
