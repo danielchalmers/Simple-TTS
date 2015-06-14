@@ -90,7 +90,7 @@
                      AllowDrop="True"
                      PreviewDragEnter="txtDoc_PreviewDragEnter"
                      PreviewDragOver="txtDoc_PreviewDragEnter"
-                     PreviewDrop="txtDoc_PreviewDrop" LostFocus="txtDoc_OnLostFocus"/>
+                     PreviewDrop="txtDoc_PreviewDrop" LostFocus="txtDoc_OnLostFocus" SelectionOpacity="0.25"/>
         </Grid>
         <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" />
         <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" />
