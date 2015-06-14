@@ -103,6 +103,7 @@ namespace SimpleTTSReader
 
                 sliderSpeed.IsEnabled = false;
                 sliderVolume.IsEnabled = false;
+                cbGender.IsEnabled = false;
             }
             else
             {
@@ -113,6 +114,7 @@ namespace SimpleTTSReader
 
                 sliderSpeed.IsEnabled = true;
                 sliderVolume.IsEnabled = true;
+                cbGender.IsEnabled = true;
 
                 txtWord.Text = string.Empty;
             }
