@@ -61,6 +61,15 @@ namespace SimpleTTSReader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://danielchalmers.github.io/Simple-TTS-Reader/donate.html.
+        /// </summary>
+        internal static string DonateLink {
+            get {
+                return ResourceManager.GetString("DonateLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://github.com/danielchalmers/Simple-TTS-Reader/issues.
         /// </summary>
         internal static string GitHubIssues {
