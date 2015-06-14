@@ -20,5 +20,8 @@
     <Setting Name="Gender" Type="System.String" Scope="User">
       <Value Profile="(Default)">Male</Value>
     </Setting>
+    <Setting Name="Launches" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

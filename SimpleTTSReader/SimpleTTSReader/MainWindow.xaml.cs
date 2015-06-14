@@ -1,9 +1,11 @@
 ﻿#region
 
 using System;
+using System.ComponentModel;
 using System.Deployment.Application;
 using System.Reflection;
 using System.Speech.Synthesis;
+using System.Text;
 using System.Windows;
 using SimpleTTSReader.Properties;
 
@@ -29,7 +31,8 @@ namespace SimpleTTSReader
                 Settings.Default.MustUpgrade = false;
                 Settings.Default.Save();
             }
-            
+            Settings.Default.Launches++;
+
             cbGender.Text = Settings.Default.Gender;
 
             _synthesizer = new SpeechSynthesizer();
@@ -38,6 +41,25 @@ namespace SimpleTTSReader
             _synthesizer.SpeakProgress += Synthesizer_OnSpeakProgress;
 
             Title = $"Simple TTS Reader (Beta {GetVersion()})";
+
+            if (Settings.Default.Launches == 1)
+            {
+                var example = new StringBuilder();
+                example.AppendLine($"WARNING: This application is currently in beta and may have issues.");
+                example.AppendLine();
+                example.AppendLine($"Hello {Environment.UserName}.");
+                example.AppendLine();
+                example.AppendLine();
+                example.AppendLine($"If you want to change Text to Speech voice properties such as gender, speed, and volume, use the options on the right.");
+                example.AppendLine($"To start, stop, or pause voice playback, use the buttons on the left.");
+                example.AppendLine($"You can find settings, help, etc in the menu above.");
+                example.AppendLine();
+                example.AppendLine($"If you have any feature requests, bugs, etc you can report them at \"{Properties.Resources.GitHubIssues}\".");
+                txtDoc.Text = example.ToString();
+
+                Start();
+                txtDoc.Text += $"{Environment.NewLine}{Environment.NewLine}(This message will only appear once.)";
+            }
         }
 
         private static string GetVersion()
@@ -81,7 +103,7 @@ namespace SimpleTTSReader
             }
         }
 
-        private void btnStart_Click(object sender, RoutedEventArgs e)
+        private void Start()
         {
             var selection = txtDoc.SelectionStart;
             if (selection == txtDoc.Text.Length || selection == -1)
@@ -94,12 +116,12 @@ namespace SimpleTTSReader
             _synthesizer.Rate = (int) (sliderSpeed.Value - 10);
             _synthesizer.Volume = (int) (sliderVolume.Value*5);
 
-            _synthesizer.SelectVoiceByHints(Settings.Default.Gender == "Female" ? VoiceGender.Female :  VoiceGender.Male);
+            _synthesizer.SelectVoiceByHints(Settings.Default.Gender == "Female" ? VoiceGender.Female : VoiceGender.Male);
 
             _synthesizer.SpeakAsync(_currentPrompt);
         }
 
-        private void btnPause_Click(object sender, RoutedEventArgs e)
+        private void ToggleState()
         {
             if (_synthesizer.State == SynthesizerState.Paused)
             {
@@ -113,12 +135,22 @@ namespace SimpleTTSReader
             }
         }
 
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            Start();
+        }
+
+        private void btnPause_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleState();
+        }
+
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             _synthesizer.SpeakAsyncCancel(_currentPrompt);
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             Settings.Default.Gender = cbGender.Text;
             Settings.Default.Save();
