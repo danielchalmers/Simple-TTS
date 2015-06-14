@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleTTSReader"
+        xmlns:properties="clr-namespace:SimpleTTSReader.Properties"
         mc:Ignorable="d"
-        Title="Simple TTS Reader" Height="800" Width="600">
+        Title="Simple TTS Reader" Height="800" Width="600" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -28,9 +29,13 @@
         </Grid>
         <Grid x:Name="sidebar3" Grid.Column="2" Grid.Row="1">
             <Slider x:Name="sliderVolume" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="68,15,0,0"
-                    VerticalAlignment="Top" Width="91" Height="21" Value="15" AutoToolTipPlacement="TopLeft"/>
+                    VerticalAlignment="Top" Width="91" Height="21"
+                    Value="{Binding Source={x:Static properties:Settings.Default}, Path=Volume,Mode=TwoWay}"
+                    AutoToolTipPlacement="TopLeft" />
             <Slider x:Name="sliderSpeed" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="68,46,0,0"
-                    VerticalAlignment="Top" Width="91" Height="21" Value="12" AutoToolTipPlacement="TopLeft"/>
+                    VerticalAlignment="Top" Width="91" Height="21"
+                    Value="{Binding Source={x:Static properties:Settings.Default}, Path=Speed,Mode=TwoWay}"
+                    AutoToolTipPlacement="TopLeft" />
             <Label x:Name="lblVolume" Content="Volume:" HorizontalAlignment="Left" Margin="10,10,0,0"
                    VerticalAlignment="Top" />
             <Label x:Name="lblSpeed" Content="Speed:" HorizontalAlignment="Left" Margin="10,41,0,0"
@@ -44,7 +49,8 @@
         </Grid>
         <Grid x:Name="sidebar2pad1" Grid.Column="1" Grid.Row="0" />
         <Grid x:Name="sidebar2pad2" Grid.Column="1" Grid.Row="2">
-            <TextBlock x:Name="txtWord" TextAlignment="Center" Foreground="Gray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" />
+            <TextBlock x:Name="txtWord" TextAlignment="Center" Foreground="Gray" HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch" Grid.Column="0" />
         </Grid>
     </Grid>
 </Window>

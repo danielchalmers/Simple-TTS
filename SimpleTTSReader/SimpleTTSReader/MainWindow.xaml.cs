@@ -5,6 +5,7 @@ using System.Deployment.Application;
 using System.Reflection;
 using System.Speech.Synthesis;
 using System.Windows;
+using SimpleTTSReader.Properties;
 
 #endregion
 
@@ -21,6 +22,14 @@ namespace SimpleTTSReader
         public MainWindow()
         {
             InitializeComponent();
+
+            if (Settings.Default.MustUpgrade)
+            {
+                Settings.Default.Upgrade();
+                Settings.Default.MustUpgrade = false;
+                Settings.Default.Save();
+            }
+
             _synthesizer = new SpeechSynthesizer();
             _synthesizer.SpeakStarted += (sender, args) => SetPauseVisibilityState(true);
             _synthesizer.SpeakCompleted += (sender, args) => SetPauseVisibilityState(false);
@@ -103,6 +112,11 @@ namespace SimpleTTSReader
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             _synthesizer.SpeakAsyncCancel(_currentPrompt);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Settings.Default.Save();
         }
     }
 }
