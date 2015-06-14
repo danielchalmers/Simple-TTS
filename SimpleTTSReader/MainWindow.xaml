@@ -50,24 +50,24 @@
 
         </Grid>
         <Grid x:Name="sidebar3" Grid.Column="2" Grid.Row="2">
-            <Slider x:Name="sliderVolume" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="68,15,0,0"
-                    VerticalAlignment="Top" Width="92" Height="21"
+            <Slider x:Name="sliderVolume" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="58,10,0,0"
+                    VerticalAlignment="Top"
                     Value="{Binding Source={x:Static properties:Settings.Default}, Path=Volume,Mode=TwoWay}"
-                    AutoToolTipPlacement="TopLeft" />
-            <Slider x:Name="sliderSpeed" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="68,46,0,0"
-                    VerticalAlignment="Top" Width="92" Height="21"
+                    AutoToolTipPlacement="TopLeft" Width="102" />
+            <Slider x:Name="sliderSpeed" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="58,37,0,0"
+                    VerticalAlignment="Top"
                     Value="{Binding Source={x:Static properties:Settings.Default}, Path=Speed,Mode=TwoWay}"
-                    AutoToolTipPlacement="TopLeft" />
-            <Label x:Name="lblVolume" Content="Volume:" HorizontalAlignment="Left" Margin="10,10,0,0"
+                    AutoToolTipPlacement="TopLeft" Width="102" />
+            <TextBlock x:Name="lblVolume" Text="Volume:" HorizontalAlignment="Left" Margin="10,10,0,0"
                    VerticalAlignment="Top" />
-            <Label x:Name="lblSpeed" Content="Speed:" HorizontalAlignment="Left" Margin="10,41,0,0"
+            <TextBlock x:Name="lblSpeed" Text="Speed:" HorizontalAlignment="Left" Margin="10,37,0,0"
                    VerticalAlignment="Top" />
-            <ComboBox x:Name="cbGender" HorizontalAlignment="Left" Margin="68,77,0,0"
-            	VerticalAlignment="Top" Width="92" Height="21">
+            <ComboBox x:Name="cbGender" HorizontalAlignment="Left" Margin="58,64,0,0"
+            	VerticalAlignment="Top" Width="102">
                 <ComboBoxItem Content="Male"/>
                 <ComboBoxItem Content="Female"/>
             </ComboBox>
-            <Label x:Name="lblGender" Content="Gender:" HorizontalAlignment="Left" Margin="10,72,0,0"
+            <TextBlock x:Name="lblGender" Text="Gender:" HorizontalAlignment="Left" Margin="10,64,0,0"
             	VerticalAlignment="Top" />
         </Grid>
         <Grid x:Name="sidebar2" Grid.Column="1" Grid.Row="2">
