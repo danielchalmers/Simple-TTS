@@ -9,9 +9,9 @@
         Title="Simple TTS Reader" Height="800" Width="600" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="170" />
             <ColumnDefinition Width="1.5*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="170" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
@@ -20,20 +20,20 @@
         </Grid.RowDefinitions>
         <Grid x:Name="sidebar1" Grid.Column="0" Grid.Row="1">
             <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="10,10,0,0"
-                    VerticalAlignment="Top" Width="149" Height="30" Click="btnStart_Click" />
+                    VerticalAlignment="Top" Width="150" Height="30" Click="btnStart_Click" />
             <Button x:Name="btnPause" Content="Pause" HorizontalAlignment="Left" Margin="10,45,0,0"
-                    VerticalAlignment="Top" Width="149" Height="30" Click="btnPause_Click" IsEnabled="False" />
+                    VerticalAlignment="Top" Width="150" Height="30" Click="btnPause_Click" IsEnabled="False" />
             <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="10,80,0,0"
-                    VerticalAlignment="Top" Width="149" Height="30" Click="btnStop_Click" IsEnabled="False" />
+                    VerticalAlignment="Top" Width="150" Height="30" Click="btnStop_Click" IsEnabled="False" />
 
         </Grid>
         <Grid x:Name="sidebar3" Grid.Column="2" Grid.Row="1">
             <Slider x:Name="sliderVolume" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="68,15,0,0"
-                    VerticalAlignment="Top" Width="91" Height="21"
+                    VerticalAlignment="Top" Width="92" Height="21"
                     Value="{Binding Source={x:Static properties:Settings.Default}, Path=Volume,Mode=TwoWay}"
                     AutoToolTipPlacement="TopLeft" />
             <Slider x:Name="sliderSpeed" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="68,46,0,0"
-                    VerticalAlignment="Top" Width="91" Height="21"
+                    VerticalAlignment="Top" Width="92" Height="21"
                     Value="{Binding Source={x:Static properties:Settings.Default}, Path=Speed,Mode=TwoWay}"
                     AutoToolTipPlacement="TopLeft" />
             <Label x:Name="lblVolume" Content="Volume:" HorizontalAlignment="Left" Margin="10,10,0,0"
