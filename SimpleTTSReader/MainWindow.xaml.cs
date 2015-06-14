@@ -3,12 +3,16 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Speech.Synthesis;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using SimpleTTSReader.Properties;
+using Image = System.Windows.Controls.Image;
 
 #endregion
 
@@ -51,6 +55,9 @@ namespace SimpleTTSReader
             // Start update checker.
             _updateChecker.Start();
 
+            btnStart.Content = PlayButtonImage("play");
+            btnStop.Content = PlayButtonImage("stop");
+
             txtDoc.Focus();
         }
 
@@ -76,15 +83,25 @@ namespace SimpleTTSReader
             txtWord.Text = text;
         }
 
+        private static Image PlayButtonImage(string imgname)
+        {
+            var finalImage = new Image {Height = 48, Stretch= Stretch.None};
+            var logo = new BitmapImage();
+            logo.BeginInit();
+            logo.UriSource = new Uri($"pack://application:,,,/SimpleTTSReader;component/Resources/{imgname}.png");
+            logo.EndInit();
+            finalImage.Source = logo;
+            RenderOptions.SetBitmapScalingMode(finalImage, BitmapScalingMode.NearestNeighbor);
+            return finalImage;
+        }
+
         public void SetUiState(bool start)
         {
             if (start)
             {
                 // Started.
                 btnStop.IsEnabled = true;
-                btnPause.IsEnabled = true;
-                btnStart.IsEnabled = false;
-                btnPause.Content = "Pause";
+                btnStart.Content = PlayButtonImage("pause");
 
                 sliderSpeed.IsEnabled = false;
                 sliderVolume.IsEnabled = false;
@@ -96,8 +113,7 @@ namespace SimpleTTSReader
             {
                 // Finished.
                 btnStop.IsEnabled = false;
-                btnPause.IsEnabled = false;
-                btnStart.IsEnabled = true;
+                btnStart.Content = PlayButtonImage("play");
 
                 sliderSpeed.IsEnabled = true;
                 sliderVolume.IsEnabled = true;
@@ -118,22 +134,22 @@ namespace SimpleTTSReader
         {
             if (_speechEngine.State == SynthesizerState.Paused)
             {
-                btnPause.Content = "Pause";
+                btnStart.Content = PlayButtonImage("pause");
                 _speechEngine.Resume();
+            }
+            else if (_speechEngine.State == SynthesizerState.Speaking)
+            {
+                btnStart.Content = PlayButtonImage("play");
+                _speechEngine.Pause();
             }
             else
             {
-                btnPause.Content = "Resume";
-                _speechEngine.Pause();
+                btnStart.Content = PlayButtonImage("pause");
+                _speechEngine.Start();
             }
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
-        {
-            _speechEngine.Start();
-        }
-
-        private void btnPause_Click(object sender, RoutedEventArgs e)
         {
             ToggleState();
         }
@@ -141,6 +157,7 @@ namespace SimpleTTSReader
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             _speechEngine.Stop();
+            _speechEngine.Resume();
         }
 
         private void btnResetSettings_Click(object sender, RoutedEventArgs e)
