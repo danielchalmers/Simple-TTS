@@ -19,6 +19,7 @@ namespace SimpleTTSReader
     public partial class MainWindow : Window
     {
         private readonly SpeechEngine _speechEngine;
+        private readonly UpdateChecker _updateChecker;
 
         public MainWindow()
         {
@@ -32,7 +33,9 @@ namespace SimpleTTSReader
 
             Title = $"Simple TTS Reader (Beta {AssemblyInfo.GetVersion()})";
 
+            // Initialize classes.
             _speechEngine = new SpeechEngine(this);
+            _updateChecker = new UpdateChecker();
 
             if (ClickOnceHelper.IsFirstLaunch)
             {
@@ -43,6 +46,9 @@ namespace SimpleTTSReader
                     $"{Environment.NewLine}{Environment.NewLine}{AssemblyInfo.GetCopyright()}";
                 txtDoc.Text += $"{Environment.NewLine}{Environment.NewLine}(This message will only appear once.)";
             }
+
+            // Start update checker.
+            _updateChecker.Start();
         }
 
         public string DocText
@@ -166,8 +172,8 @@ namespace SimpleTTSReader
         private void OpenFile(string path)
         {
             if (txtDoc.Text.Length > 0 &&
-                MessageBox.Show("Are you sure you want to open this file? You will lose all current text.",
-                    "Simple TTS Reader", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.No)
+                Popup.Show("Are you sure you want to open this file? You will lose all current text.",
+                    MessageBoxButton.YesNo) == MessageBoxResult.No)
                 return;
 
             txtDoc.Text = File.ReadAllText(path);
