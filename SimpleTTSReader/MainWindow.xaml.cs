@@ -149,7 +149,7 @@ namespace SimpleTTSReader
             _synthesizer.Rate = (int) (sliderSpeed.Value - 10);
             _synthesizer.Volume = (int) (sliderVolume.Value*5);
 
-            _synthesizer.SelectVoiceByHints(Settings.Default.Gender == "Female" ? VoiceGender.Female : VoiceGender.Male);
+            _synthesizer.SelectVoiceByHints(cbGender.Text == "Female" ? VoiceGender.Female : VoiceGender.Male);
 
             _synthesizer.SpeakAsync(_currentPrompt);
         }
