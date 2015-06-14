@@ -54,8 +54,9 @@
             </Grid.ColumnDefinitions>
             <TextBox x:Name="txtDoc" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
         </Grid>
-        <Grid x:Name="sidebar2pad1" Grid.Column="1" Grid.Row="0" />
-        <Grid x:Name="sidebar2pad2" Grid.Column="1" Grid.Row="2">
+        <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+        <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2"/>
+        <Grid x:Name="sidebar2pad3" Grid.Column="1" Grid.Row="2">
             <TextBlock x:Name="txtWord" TextAlignment="Center" Foreground="Gray" HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch" Grid.Column="0" />
         </Grid>
