@@ -58,7 +58,7 @@
         <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2"/>
         <Grid x:Name="sidebar2pad3" Grid.Column="1" Grid.Row="2">
             <TextBlock x:Name="txtWord" TextAlignment="Center" Foreground="Gray" HorizontalAlignment="Stretch"
-                       VerticalAlignment="Stretch" Grid.Column="0" />
+                       VerticalAlignment="Center" Grid.Column="0" />
         </Grid>
     </Grid>
 </Window>
