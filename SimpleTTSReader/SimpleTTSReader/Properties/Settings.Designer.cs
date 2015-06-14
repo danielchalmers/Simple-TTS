@@ -106,5 +106,29 @@ namespace SimpleTTSReader.Properties {
                 this["Launches"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Doc {
+            get {
+                return ((string)(this["Doc"]));
+            }
+            set {
+                this["Doc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int SelectionStart {
+            get {
+                return ((int)(this["SelectionStart"]));
+            }
+            set {
+                this["SelectionStart"] = value;
+            }
+        }
     }
 }

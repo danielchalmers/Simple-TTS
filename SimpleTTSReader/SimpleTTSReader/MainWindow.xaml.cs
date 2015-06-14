@@ -34,6 +34,8 @@ namespace SimpleTTSReader
             Settings.Default.Launches++;
 
             cbGender.Text = Settings.Default.Gender;
+            txtDoc.Text = Settings.Default.Doc;
+            txtDoc.SelectionStart = Settings.Default.SelectionStart;
 
             _synthesizer = new SpeechSynthesizer();
             _synthesizer.SpeakStarted += (sender, args) => SetPauseVisibilityState(true);
@@ -152,6 +154,8 @@ namespace SimpleTTSReader
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            Settings.Default.Doc = txtDoc.Text;
+            Settings.Default.SelectionStart = txtDoc.SelectionStart;
             Settings.Default.Gender = cbGender.Text;
             Settings.Default.Save();
         }
