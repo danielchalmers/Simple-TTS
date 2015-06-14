@@ -22,6 +22,8 @@ namespace SimpleTTSReader
     {
         private readonly SpeechSynthesizer _synthesizer;
         private Prompt _currentPrompt;
+        private int WordOffset = 0;
+
 
         public MainWindow()
         {
@@ -89,6 +91,7 @@ namespace SimpleTTSReader
         private void Synthesizer_OnSpeakProgress(object sender, SpeakProgressEventArgs e)
         {
             txtWord.Text = e.Text;
+            txtDoc.Select(e.CharacterPosition + WordOffset, e.Text.Length);
         }
 
         private void SetPauseVisibilityState(bool pause)
@@ -104,6 +107,8 @@ namespace SimpleTTSReader
                 sliderSpeed.IsEnabled = false;
                 sliderVolume.IsEnabled = false;
                 cbGender.IsEnabled = false;
+
+                txtDoc.Focus();
             }
             else
             {
@@ -117,6 +122,10 @@ namespace SimpleTTSReader
                 cbGender.IsEnabled = true;
 
                 txtWord.Text = string.Empty;
+
+                txtDoc.SelectionStart = 0;
+
+                btnStart.Focus();
             }
         }
 
@@ -126,6 +135,7 @@ namespace SimpleTTSReader
             if (selection == txtDoc.Text.Length || selection == -1)
                 selection = 0;
             var text = txtDoc.Text.Substring(selection, txtDoc.Text.Length - selection);
+            WordOffset = selection;
             if (string.IsNullOrWhiteSpace(text))
                 return;
             _currentPrompt = new Prompt(text);
