@@ -26,12 +26,14 @@ namespace SimpleTTSReader
 
         private void Synthesizer_OnSpeakProgress(object sender, SpeakProgressEventArgs e)
         {
+            txtWord.Text = e.Text;
         }
 
         private void SetPauseVisibilityState(bool pause)
         {
             if (pause)
             {
+                // Started.
                 btnStop.IsEnabled = true;
                 btnPause.IsEnabled = true;
                 btnStart.IsEnabled = false;
@@ -42,12 +44,15 @@ namespace SimpleTTSReader
             }
             else
             {
+                // Finished.
                 btnStop.IsEnabled = false;
                 btnPause.IsEnabled = false;
                 btnStart.IsEnabled = true;
 
                 sliderSpeed.IsEnabled = true;
                 sliderVolume.IsEnabled = true;
+
+                txtWord.Text = string.Empty;
             }
         }
 
