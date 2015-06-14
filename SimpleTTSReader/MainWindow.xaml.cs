@@ -2,11 +2,8 @@
 
 using System;
 using System.ComponentModel;
-using System.Deployment.Application;
 using System.IO;
-using System.Reflection;
 using System.Speech.Synthesis;
-using System.Text;
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Win32;
@@ -21,82 +18,58 @@ namespace SimpleTTSReader
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly SpeechSynthesizer _synthesizer;
-        private Prompt _currentPrompt;
-        private int WordOffset = 0;
+        private readonly SpeechEngine _speechEngine;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            if (Settings.Default.MustUpgrade)
-            {
-                Settings.Default.Upgrade();
-                Settings.Default.MustUpgrade = false;
-                Settings.Default.Save();
-            }
+            SettingsHelper.UpgradeSettings();
             Settings.Default.Launches++;
 
-            cbGender.Text = Settings.Default.Gender;
             txtDoc.Text = Settings.Default.Doc;
             txtDoc.SelectionStart = Settings.Default.SelectionStart;
 
-            _synthesizer = new SpeechSynthesizer();
-            _synthesizer.SpeakStarted += (sender, args) => SetPauseVisibilityState(true);
-            _synthesizer.SpeakCompleted += (sender, args) => SetPauseVisibilityState(false);
-            _synthesizer.SpeakProgress += Synthesizer_OnSpeakProgress;
+            Title = $"Simple TTS Reader (Beta {AssemblyInfo.GetVersion()})";
 
-            Title = $"Simple TTS Reader (Beta {GetVersion()})";
+            _speechEngine = new SpeechEngine(this);
 
-            if (Settings.Default.Launches == 1)
+            if (ClickOnceHelper.IsFirstLaunch)
             {
-                var example = new StringBuilder();
-                example.AppendLine($"WARNING: This application is currently in beta and will receive frequent updates and may have issues.");
-                example.AppendLine();
-                example.AppendLine($"Hello {Environment.UserName}.");
-                example.AppendLine($"Welcome to Simple Text to Speech Reader version {GetVersion()}.");
-                example.AppendLine();
-                example.AppendLine($"If you want to change Text to Speech voice properties such as gender, speed, and volume, use the options on the right.");
-                example.AppendLine($"To start, stop, or pause voice playback, use the buttons on the left.");
-                example.AppendLine($"You can find settings, help, etc in the menu above.");
-                example.AppendLine();
-                example.AppendLine();
-                example.AppendLine($"All features in this application are available free of charge, but feel free to leave a donation at \"{Properties.Resources.DonateLink}\"");
-                example.AppendLine();
-                example.AppendLine($"If you have any issues or requests, you can report them at \"{Properties.Resources.GitHubIssues}\".");
-                txtDoc.Text = example.ToString();
+                txtDoc.Text = AssemblyInfo.GetWelcomeMessage();
 
-                Start();
-                txtDoc.Text += $"{Environment.NewLine}{Environment.NewLine}{GetAssemblyAttribute<AssemblyCopyrightAttribute>(a => a.Copyright)}";
+                _speechEngine.Start();
+                txtDoc.Text +=
+                    $"{Environment.NewLine}{Environment.NewLine}{AssemblyInfo.GetCopyright()}";
                 txtDoc.Text += $"{Environment.NewLine}{Environment.NewLine}(This message will only appear once.)";
             }
         }
 
-        public string GetAssemblyAttribute<T>(Func<T, string> value)
-            where T : Attribute
+        public string DocText
         {
-            var attribute = (T) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof (T));
-            return value.Invoke(attribute);
+            get { return txtDoc.Text; }
+            set { txtDoc.Text = value; }
         }
 
-        private static string GetVersion()
+        public int DocSelection
         {
-            var obj = ApplicationDeployment.IsNetworkDeployed
-                ? ApplicationDeployment.CurrentDeployment.
-                    CurrentVersion
-                : Assembly.GetExecutingAssembly().GetName().Version;
-            return $"{obj.Major}.{obj.Minor}.{obj.Build}";
+            get { return txtDoc.SelectionStart; }
+            set { txtDoc.SelectionStart = value; }
         }
 
-        private void Synthesizer_OnSpeakProgress(object sender, SpeakProgressEventArgs e)
+        public void DocSelect(int start, int length)
         {
-            txtWord.Text = e.Text;
-            txtDoc.Select(e.CharacterPosition + WordOffset, e.Text.Length);
+            txtDoc.Select(start, length);
         }
 
-        private void SetPauseVisibilityState(bool pause)
+        public void SetCurrentWord(string text)
         {
-            if (pause)
+            txtWord.Text = text;
+        }
+
+        public void SetUiState(bool start)
+        {
+            if (start)
             {
                 // Started.
                 btnStop.IsEnabled = true;
@@ -135,42 +108,23 @@ namespace SimpleTTSReader
             }
         }
 
-        private void Start()
-        {
-            var selection = txtDoc.SelectionStart;
-            if (selection == txtDoc.Text.Length || selection == -1)
-                selection = 0;
-            var text = txtDoc.Text.Substring(selection, txtDoc.Text.Length - selection);
-            WordOffset = selection;
-            if (string.IsNullOrWhiteSpace(text))
-                return;
-            _currentPrompt = new Prompt(text);
-
-            _synthesizer.Rate = (int) (sliderSpeed.Value - 10);
-            _synthesizer.Volume = (int) (sliderVolume.Value*5);
-
-            _synthesizer.SelectVoiceByHints(cbGender.Text == "Female" ? VoiceGender.Female : VoiceGender.Male);
-
-            _synthesizer.SpeakAsync(_currentPrompt);
-        }
-
         private void ToggleState()
         {
-            if (_synthesizer.State == SynthesizerState.Paused)
+            if (_speechEngine.State == SynthesizerState.Paused)
             {
                 btnPause.Content = "Pause";
-                _synthesizer.Resume();
+                _speechEngine.Resume();
             }
             else
             {
                 btnPause.Content = "Resume";
-                _synthesizer.Pause();
+                _speechEngine.Pause();
             }
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            Start();
+            _speechEngine.Start();
         }
 
         private void btnPause_Click(object sender, RoutedEventArgs e)
@@ -180,14 +134,13 @@ namespace SimpleTTSReader
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            _synthesizer.SpeakAsyncCancel(_currentPrompt);
+            _speechEngine.Stop();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             Settings.Default.Doc = txtDoc.Text;
             Settings.Default.SelectionStart = txtDoc.SelectionStart;
-            Settings.Default.Gender = cbGender.Text;
             Settings.Default.Save();
         }
 
@@ -222,7 +175,7 @@ namespace SimpleTTSReader
 
         private void txtDoc_PreviewDragEnter(object sender, DragEventArgs e)
         {
-            if (_synthesizer.State == SynthesizerState.Speaking)
+            if (_speechEngine.State == SynthesizerState.Speaking)
                 return;
             e.Effects = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
             e.Handled = true;
@@ -230,10 +183,10 @@ namespace SimpleTTSReader
 
         private void txtDoc_PreviewDrop(object sender, DragEventArgs e)
         {
-            if (_synthesizer.State == SynthesizerState.Speaking)
+            if (_speechEngine.State == SynthesizerState.Speaking)
                 return;
             if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
-            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            var files = (string[]) e.Data.GetData(DataFormats.FileDrop);
             if (files != null && files.Length != 0)
                 OpenFile(files[0]);
             e.Handled = true;

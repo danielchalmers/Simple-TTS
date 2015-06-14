@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:SimpleTTSReader"
         xmlns:properties="clr-namespace:SimpleTTSReader.Properties"
         mc:Ignorable="d"
-        Title="Simple TTS Reader" Width="{Binding Source={x:Static properties:Settings.Default}, Path=Width,Mode=TwoWay}" Height="{Binding Source={x:Static properties:Settings.Default}, Path=Height,Mode=TwoWay}" Closing="Window_Closing">
+        Title="Simple TTS Reader"
+        Width="{Binding Source={x:Static properties:Settings.Default}, Path=Width,Mode=TwoWay}"
+        Height="{Binding Source={x:Static properties:Settings.Default}, Path=Height,Mode=TwoWay}"
+        Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="170" />
@@ -22,21 +25,21 @@
 
         <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_Open..." Click="MenuItemOpen_Click"/>
-                <Separator/>
-                <MenuItem Header="Save _As..." Click="MenuItemSaveAs_Click"/>
-                <Separator/>
-                <MenuItem Header="E_xit" Click="MenuItemExit_Click"/>
+                <MenuItem Header="_Open..." Click="MenuItemOpen_Click" />
+                <Separator />
+                <MenuItem Header="Save _As..." Click="MenuItemSaveAs_Click" />
+                <Separator />
+                <MenuItem Header="E_xit" Click="MenuItemExit_Click" />
             </MenuItem>
             <MenuItem Header="_Edit">
-                <MenuItem Header="_Undo" Command="Undo"/>
-                <Separator/>
-                <MenuItem Header="Cu_t" Command="Cut"/>
-                <MenuItem Header="_Copy" Command="Copy"/>
-                <MenuItem Header="_Paste" Command="Paste"/>
-                <MenuItem Header="De_lete" Command="Delete"/>
-                <Separator/>
-                <MenuItem Header="Select _All" Command="SelectAll"/>
+                <MenuItem Header="_Undo" Command="Undo" />
+                <Separator />
+                <MenuItem Header="Cu_t" Command="Cut" />
+                <MenuItem Header="_Copy" Command="Copy" />
+                <MenuItem Header="_Paste" Command="Paste" />
+                <MenuItem Header="De_lete" Command="Delete" />
+                <Separator />
+                <MenuItem Header="Select _All" Command="SelectAll" />
             </MenuItem>
         </Menu>
 
@@ -59,32 +62,34 @@
                     Value="{Binding Source={x:Static properties:Settings.Default}, Path=Speed,Mode=TwoWay}"
                     AutoToolTipPlacement="TopLeft" Width="102" />
             <TextBlock x:Name="lblVolume" Text="Volume:" HorizontalAlignment="Left" Margin="10,10,0,0"
-                   VerticalAlignment="Top" />
+                       VerticalAlignment="Top" />
             <TextBlock x:Name="lblSpeed" Text="Speed:" HorizontalAlignment="Left" Margin="10,37,0,0"
-                   VerticalAlignment="Top" />
+                       VerticalAlignment="Top" />
             <ComboBox x:Name="cbGender" HorizontalAlignment="Left" Margin="58,64,0,0"
-            	VerticalAlignment="Top" Width="102">
-                <ComboBoxItem Content="Male"/>
-                <ComboBoxItem Content="Female"/>
+                      VerticalAlignment="Top" Width="102"
+                      SelectedIndex="{Binding Source={x:Static properties:Settings.Default}, Path=GenderIndex,Mode=TwoWay}">
+                <ComboBoxItem Content="Male" />
+                <ComboBoxItem Content="Female" />
             </ComboBox>
             <TextBlock x:Name="lblGender" Text="Gender:" HorizontalAlignment="Left" Margin="10,64,0,0"
-            	VerticalAlignment="Top" />
+                       VerticalAlignment="Top" />
         </Grid>
         <Grid x:Name="sidebar2" Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtDoc" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                 AllowDrop="True" 
-                 PreviewDragEnter="txtDoc_PreviewDragEnter" 
-                 PreviewDragOver="txtDoc_PreviewDragEnter" 
-                 PreviewDrop="txtDoc_PreviewDrop" />
+            <TextBox x:Name="txtDoc" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0"
+                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                     AllowDrop="True"
+                     PreviewDragEnter="txtDoc_PreviewDragEnter"
+                     PreviewDragOver="txtDoc_PreviewDragEnter"
+                     PreviewDrop="txtDoc_PreviewDrop" />
         </Grid>
-        <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1"/>
-        <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"/>
+        <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" />
+        <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" />
         <Grid x:Name="sidebar2pad3" Grid.Column="1" Grid.Row="3">
             <TextBlock x:Name="txtWord" TextAlignment="Center" Foreground="Gray" HorizontalAlignment="Stretch"
-                       VerticalAlignment="Center" Grid.Column="0" TextTrimming="CharacterEllipsis"/>
+                       VerticalAlignment="Center" Grid.Column="0" TextTrimming="CharacterEllipsis" />
         </Grid>
     </Grid>
 </Window>
