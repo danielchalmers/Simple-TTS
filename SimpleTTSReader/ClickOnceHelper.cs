@@ -65,34 +65,51 @@ namespace SimpleTTSReader
 
             if (info.UpdateAvailable)
             {
-                var doUpdate = true;
-
-                if (info.IsUpdateRequired)
-                {
-                    Popup.Show(
-                        "A mandatory update is available.\n\nThe application will now install the update and restart.");
-                }
-                else
-                {
-                    if (Popup.Show("An update is available.\n\nWould you like to update now?",
-                        MessageBoxButton.OKCancel) != MessageBoxResult.OK)
-                        doUpdate = false;
-                }
-
-                if (doUpdate)
+                if (Settings.Default.AutoUpdate)
                 {
                     try
                     {
                         ad.Update();
                         RestartApplication();
                     }
-                    catch (DeploymentDownloadException dde)
+                    catch
                     {
-                        Popup.Show(
-                            "Cannot install the latest version of the application.\n\nPlease check your network connection, or try again later.\n\nError: " +
-                            dde);
+                        // ignored
                     }
+                    return;
                 }
+                if (silent && info.AvailableVersion == Settings.Default.ForgetUpdateVersion) return;
+                UpdateChecker.Stop();
+
+                var updateDialog = new UpdatePrompt(info.AvailableVersion, info.IsUpdateRequired);
+                updateDialog.ShowDialog();
+
+                switch (updateDialog.updateResponse)
+                {
+                    case UpdatePrompt.UpdateResponse.RemindNever:
+                        Settings.Default.ForgetUpdateVersion = info.AvailableVersion;
+                        break;
+                    case UpdatePrompt.UpdateResponse.UpdateNow:
+                        try
+                        {
+                            ad.Update();
+                            RestartApplication();
+                        }
+                        catch (DeploymentDownloadException dde)
+                        {
+                            Popup.Show(
+                                "Cannot install the latest version of the application.\n\nPlease check your network connection, or try again later.\n\nError: " +
+                                dde);
+                        }
+                        break;
+                }
+                UpdateChecker.Start();
+            }
+            else
+            {
+                if (!silent)
+                    Popup.Show(
+                        "There are no new updates available.");
             }
         }
 

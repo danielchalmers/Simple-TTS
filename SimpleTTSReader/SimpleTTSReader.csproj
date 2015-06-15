@@ -74,6 +74,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -101,10 +105,14 @@
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="GitHubApiCommits.cs" />
     <Compile Include="Popup.cs" />
     <Compile Include="SettingsHelper.cs" />
     <Compile Include="SpeechEngine.cs" />
     <Compile Include="UpdateChecker.cs" />
+    <Compile Include="UpdatePrompt.xaml.cs">
+      <DependentUpon>UpdatePrompt.xaml</DependentUpon>
+    </Compile>
     <Page Include="About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +130,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UpdatePrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -141,6 +153,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -149,7 +162,9 @@
     <None Include="SimpleTTSReader_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

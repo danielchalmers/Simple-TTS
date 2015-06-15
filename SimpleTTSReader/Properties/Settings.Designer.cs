@@ -130,5 +130,40 @@ namespace SimpleTTSReader.Properties {
                 this["SelectionStart"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Version ForgetUpdateVersion {
+            get {
+                return ((global::System.Version)(this["ForgetUpdateVersion"]));
+            }
+            set {
+                this["ForgetUpdateVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoUpdate {
+            get {
+                return ((bool)(this["AutoUpdate"]));
+            }
+            set {
+                this["AutoUpdate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CheckForUpdates {
+            get {
+                return ((bool)(this["CheckForUpdates"]));
+            }
+            set {
+                this["CheckForUpdates"] = value;
+            }
+        }
     }
 }

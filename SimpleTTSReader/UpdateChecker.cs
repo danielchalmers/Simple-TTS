@@ -2,6 +2,7 @@
 
 using System;
 using System.Windows.Threading;
+using SimpleTTSReader.Properties;
 
 #endregion
 
@@ -9,7 +10,7 @@ namespace SimpleTTSReader
 {
     internal class UpdateChecker
     {
-        private readonly DispatcherTimer _updateTimer = new DispatcherTimer();
+        private static readonly DispatcherTimer _updateTimer = new DispatcherTimer();
 
         public UpdateChecker()
         {
@@ -17,13 +18,13 @@ namespace SimpleTTSReader
             _updateTimer.Interval = new TimeSpan(1, 0, 0);
         }
 
-        public void Start()
+        public static void Start()
         {
-            if (ClickOnceHelper.IsUpdateable)
+            if (ClickOnceHelper.IsUpdateable && Settings.Default.CheckForUpdates)
                 _updateTimer.Start();
         }
 
-        public void Stop()
+        public static void Stop()
         {
             _updateTimer.Stop();
         }

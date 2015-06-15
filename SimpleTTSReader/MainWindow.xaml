@@ -57,9 +57,9 @@
             </Grid.RowDefinitions>
             <Grid x:Name="playgridparent">
                 <Button x:Name="btnStart" HorizontalAlignment="Left" Margin="34,0,0,0"
-                    VerticalAlignment="Top" Height="48" Click="btnStart_Click" Width="48"/>
+                        VerticalAlignment="Top" Height="48" Click="btnStart_Click" Width="48" />
                 <Button x:Name="btnStop" HorizontalAlignment="Right" Margin="0,0,34,0"
-                    VerticalAlignment="Top" Height="48" Click="btnStop_Click" IsEnabled="False" Width="48"/>
+                        VerticalAlignment="Top" Height="48" Click="btnStop_Click" IsEnabled="False" Width="48" />
             </Grid>
         </Grid>
         <Grid x:Name="sidebar3" Grid.Column="2" Grid.Row="2">
@@ -84,7 +84,7 @@
                 <ComboBoxItem Content="Female" />
             </ComboBox>
             <Button x:Name="btnResetSettings" HorizontalAlignment="Stretch" Margin="10,0"
-                      VerticalAlignment="Bottom" Content="Default settings..." Click="btnResetSettings_Click" Height="23"/>
+                    VerticalAlignment="Bottom" Content="Default settings..." Click="btnResetSettings_Click" Height="23" />
         </Grid>
         <Grid x:Name="sidebar2" Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -95,7 +95,7 @@
                      AllowDrop="True"
                      PreviewDragEnter="txtDoc_PreviewDragEnter"
                      PreviewDragOver="txtDoc_PreviewDragEnter"
-                     PreviewDrop="txtDoc_PreviewDrop" LostFocus="txtDoc_OnLostFocus" SelectionOpacity="0.25"/>
+                     PreviewDrop="txtDoc_PreviewDrop" LostFocus="txtDoc_OnLostFocus" SelectionOpacity="0.25" />
         </Grid>
         <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" />
         <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" />

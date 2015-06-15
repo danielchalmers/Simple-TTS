@@ -2,8 +2,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Speech.Synthesis;
 using System.Windows;
@@ -12,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using SimpleTTSReader.Properties;
-using Image = System.Windows.Controls.Image;
 
 #endregion
 
@@ -24,7 +21,6 @@ namespace SimpleTTSReader
     public partial class MainWindow : Window
     {
         private readonly SpeechEngine _speechEngine;
-        private readonly UpdateChecker _updateChecker;
 
         public MainWindow()
         {
@@ -36,11 +32,10 @@ namespace SimpleTTSReader
             txtDoc.Text = Settings.Default.Doc;
             txtDoc.SelectionStart = Settings.Default.SelectionStart;
 
-            Title = $"Simple TTS Reader (Beta {AssemblyInfo.GetVersion()})";
+            Title = $"Simple TTS Reader (Beta {AssemblyInfo.GetVersionString()})";
 
             // Initialize classes.
             _speechEngine = new SpeechEngine(this);
-            _updateChecker = new UpdateChecker();
 
             if (ClickOnceHelper.IsFirstLaunch)
             {
@@ -53,7 +48,7 @@ namespace SimpleTTSReader
             }
 
             // Start update checker.
-            _updateChecker.Start();
+            UpdateChecker.Start();
 
             btnStart.Content = PlayButtonImage("play");
             btnStop.Content = PlayButtonImage("stop");
@@ -85,7 +80,7 @@ namespace SimpleTTSReader
 
         private static Image PlayButtonImage(string imgname)
         {
-            var finalImage = new Image {Height = 48, Stretch= Stretch.None};
+            var finalImage = new Image {Height = 48, Stretch = Stretch.None};
             var logo = new BitmapImage();
             logo.BeginInit();
             logo.UriSource = new Uri($"pack://application:,,,/SimpleTTSReader;component/Resources/{imgname}.png");
@@ -170,7 +165,7 @@ namespace SimpleTTSReader
                 Settings.Default.Launches = 1;
             }
         }
-        
+
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             Settings.Default.Doc = txtDoc.Text;

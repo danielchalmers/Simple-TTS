@@ -120,6 +120,9 @@
   <data name="DonateLink" xml:space="preserve">
     <value>https://danielchalmers.github.io/Simple-TTS-Reader/donate.html</value>
   </data>
+  <data name="GitHubApiCommits" xml:space="preserve">
+    <value>https://api.github.com/repos/danielchalmers/Simple-TTS-Reader/commits</value>
+  </data>
   <data name="GitHubIssues" xml:space="preserve">
     <value>https://github.com/danielchalmers/Simple-TTS-Reader/issues</value>
   </data>

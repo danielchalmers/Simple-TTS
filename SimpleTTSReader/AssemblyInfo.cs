@@ -19,7 +19,7 @@ namespace SimpleTTSReader
             return value.Invoke(attribute);
         }
 
-        public static string GetVersion()
+        public static string GetVersionString()
         {
             var obj = ApplicationDeployment.IsNetworkDeployed
                 ? ApplicationDeployment.CurrentDeployment.
@@ -28,9 +28,28 @@ namespace SimpleTTSReader
             return $"{obj.Major}.{obj.Minor}.{obj.Build}";
         }
 
+        public static string GetVersionString(Version version)
+        {
+            return $"{version.Major}.{version.Minor}.{version.Build}";
+        }
+
+        public static Version GetVersion()
+        {
+            var obj = ApplicationDeployment.IsNetworkDeployed
+                ? ApplicationDeployment.CurrentDeployment.
+                    CurrentVersion
+                : Assembly.GetExecutingAssembly().GetName().Version;
+            return obj;
+        }
+
         public static string GetCopyright()
         {
             return GetAssemblyAttribute<AssemblyCopyrightAttribute>(a => a.Copyright);
+        }
+
+        public static string GetTitle()
+        {
+            return GetAssemblyAttribute<AssemblyTitleAttribute>(a => a.Title);
         }
 
         public static string GetWelcomeMessage()
@@ -40,7 +59,7 @@ namespace SimpleTTSReader
                 $"WARNING: This application is currently in beta and will receive frequent updates and may have issues.");
             example.AppendLine();
             example.AppendLine($"Hello {Environment.UserName}.");
-            example.AppendLine($"Welcome to Simple Text to Speech Reader version {GetVersion()}.");
+            example.AppendLine($"Welcome to Simple Text to Speech Reader version {GetVersionString()}.");
             example.AppendLine();
             example.AppendLine(
                 $"If you want to change Text to Speech voice properties such as gender, speed, and volume, use the options on the right.");
@@ -59,12 +78,13 @@ namespace SimpleTTSReader
         public static string GetAboutDescription()
         {
             var example = new StringBuilder();
-            example.AppendLine($"Simple TTS Reader (v{GetVersion()}).");
+            example.AppendLine($"Simple TTS Reader (v{GetVersionString()}).");
             example.AppendLine();
             example.AppendLine($"Issues: {Resources.GitHubIssues}");
             example.AppendLine($"Donations: {Resources.DonateLink}");
             example.AppendLine();
-            example.AppendLine($"Icons are made by Google (https://www.google.com) from Flaticon (http://www.flaticon.com) and are licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)");
+            example.AppendLine(
+                $"Icons are made by Google (https://www.google.com) from Flaticon (http://www.flaticon.com) and are licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)");
             return example.ToString();
         }
     }
