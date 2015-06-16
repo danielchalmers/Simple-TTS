@@ -1,0 +1,9 @@
+WARNING: This application is currently in beta and will receive frequent updates and may have issues.
+
+Hello {0}.
+Welcome to Simple Text to Speech Reader version {1}.
+
+To start, stop, or pause voice playback, use the buttons above.
+You can find settings, help, etc in the toolbar menu at the top of the window.
+
+If you have any issues or requests, you can report them at {2}.

@@ -40,7 +40,8 @@ namespace SimpleTTSReader
 
             if (ClickOnceHelper.IsFirstLaunch)
             {
-                txtDoc.Text = AssemblyInfo.GetWelcomeMessage();
+                txtDoc.Text = string.Format(Properties.Resources.WelcomeMessage, Environment.UserName,
+                    AssemblyInfo.GetVersionString(), Properties.Resources.GitHubIssues);
 
                 _speechEngine.Start();
                 txtDoc.Text +=
