@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppName" xml:space="preserve">
+    <value>Simple TTS Reader</value>
+  </data>
+  <data name="AppPathName" xml:space="preserve">
+    <value>SimpleTTSReader</value>
+  </data>
   <data name="DonateLink" xml:space="preserve">
     <value>https://danielchalmers.github.io/Simple-TTS-Reader/donate.html</value>
   </data>

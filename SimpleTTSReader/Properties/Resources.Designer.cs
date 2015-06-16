@@ -61,6 +61,24 @@ namespace SimpleTTSReader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Simple TTS Reader.
+        /// </summary>
+        internal static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SimpleTTSReader.
+        /// </summary>
+        internal static string AppPathName {
+            get {
+                return ResourceManager.GetString("AppPathName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://danielchalmers.github.io/Simple-TTS-Reader/donate.html.
         /// </summary>
         internal static string DonateLink {
