@@ -165,5 +165,14 @@ namespace SimpleTTSReader.Properties {
                 this["CheckForUpdates"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("95")]
+        public int BetaVersion {
+            get {
+                return ((int)(this["BetaVersion"]));
+            }
+        }
     }
 }

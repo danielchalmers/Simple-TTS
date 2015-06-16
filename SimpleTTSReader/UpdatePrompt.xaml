@@ -21,7 +21,7 @@
         <TextBlock x:Name="txtUpdateMsg" Margin="10,5,0,0" Grid.Column="0" Grid.Row="0" FontSize="16"
                    Text="Update Available" />
         <TextBlock x:Name="txtUpdateSubMsg" Margin="10,5,0,0" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" />
-        <TextBox x:Name="textBlock" IsReadOnly="True" Margin="10,10,10,10" TextWrapping="Wrap" Grid.Column="0"
+        <TextBox x:Name="txtChangelog" IsReadOnly="True" Margin="10,10,10,10" TextWrapping="Wrap" Grid.Column="0"
                  Grid.ColumnSpan="3" Grid.Row="2" />
         <Button x:Name="btnRemindLater" Content="Ask Later" Margin="10,0,0,10" Width="80" Height="23"
                 Click="btnRemindLater_Click"

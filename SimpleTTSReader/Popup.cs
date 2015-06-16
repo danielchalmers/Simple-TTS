@@ -1,6 +1,7 @@
 ﻿#region
 
 using System.Windows;
+using SimpleTTSReader.Properties;
 
 #endregion
 
@@ -11,7 +12,7 @@ namespace SimpleTTSReader
         public static MessageBoxResult Show(string text, MessageBoxButton btn = MessageBoxButton.OK,
             MessageBoxImage img = MessageBoxImage.Information, MessageBoxResult defaultbtn = MessageBoxResult.OK)
         {
-            return MessageBox.Show(text, Properties.Resources.AppName, btn, img, defaultbtn);
+            return MessageBox.Show(text, Resources.AppName, btn, img, defaultbtn);
         }
     }
 }

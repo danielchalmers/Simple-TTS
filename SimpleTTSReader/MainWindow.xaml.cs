@@ -6,7 +6,6 @@ using System.IO;
 using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
@@ -69,7 +68,7 @@ namespace SimpleTTSReader
             get { return txtDoc.SelectionStart; }
             set { txtDoc.SelectionStart = value; }
         }
-        
+
         public void DocSelect(int start, int length)
         {
             txtDoc.Select(start, length);

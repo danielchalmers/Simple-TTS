@@ -88,7 +88,7 @@ namespace SimpleTTSReader
                 var updateDialog = new UpdatePrompt(info.AvailableVersion, info.IsUpdateRequired);
                 updateDialog.ShowDialog();
 
-                switch (updateDialog.updateResponse)
+                switch (updateDialog.UserResponse)
                 {
                     case UpdatePrompt.UpdateResponse.RemindNever:
                         Settings.Default.ForgetUpdateVersion = info.AvailableVersion;

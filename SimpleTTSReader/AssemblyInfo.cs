@@ -3,8 +3,6 @@
 using System;
 using System.Deployment.Application;
 using System.Reflection;
-using System.Text;
-using SimpleTTSReader.Properties;
 
 #endregion
 
