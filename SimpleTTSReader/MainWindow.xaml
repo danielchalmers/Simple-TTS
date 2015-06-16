@@ -41,6 +41,9 @@
                 <Separator />
                 <MenuItem Header="Select _All" Command="SelectAll" />
             </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Options..." Click="MenuItemOptions_OnClick" />
+            </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="Check for _Updates..." Click="MenuItemUpdates_OnClick" />
                 <Separator />

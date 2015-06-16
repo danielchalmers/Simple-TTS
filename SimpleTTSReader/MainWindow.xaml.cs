@@ -236,5 +236,12 @@ namespace SimpleTTSReader
         {
             ClickOnceHelper.CheckForUpdates();
         }
+
+        private void MenuItemOptions_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Open options window.
+            var dialog = new Options();
+            dialog.ShowDialog();
+        }
     }
 }

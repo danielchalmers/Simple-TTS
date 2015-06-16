@@ -1,0 +1,28 @@
+﻿<Window x:Class="SimpleTTSReader.Options"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleTTSReader"
+        xmlns:properties="clr-namespace:SimpleTTSReader.Properties"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Options" Height="640" Width="480" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <xctk:PropertyGrid
+            AutoGenerateProperties="true"
+            SelectedObject="{Binding Source={x:Static properties:Settings.Default}}" IsCategorized="False"
+            ShowSortOptions="False" ShowSummary="False" ShowTitle="False" ShowSearchBox="True"
+            Background="{x:Static SystemColors.WindowBrush}" />
+        <Button x:Name="btnCancel" Content="Cancel" Margin="0,0,95,10" Width="75" Height="23"
+                Click="btnCancel_Click"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" IsCancel="True" Grid.Row="1" />
+        <Button x:Name="btnOK" Content="OK" Margin="0,10,15,10" Width="75" Height="23"
+                Click="btnOK_Click"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" Grid.Row="1" />
+    </Grid>
+</Window>
