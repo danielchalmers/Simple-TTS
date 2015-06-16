@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Width="{Binding Source={x:Static properties:Settings.Default}, Path=Width,Mode=TwoWay}"
         Height="{Binding Source={x:Static properties:Settings.Default}, Path=Height,Mode=TwoWay}"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        MinWidth="300" MinHeight="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
