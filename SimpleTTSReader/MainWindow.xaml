@@ -58,7 +58,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="btnStart" HorizontalAlignment="Left" Margin="10,5,0,0"
                         VerticalAlignment="Top" Height="32" Click="btnStart_Click" Width="32" Grid.Column="0"/>
-            <Button x:Name="btnStop" HorizontalAlignment="Left" Margin="10,5,0,0"
+            <Button x:Name="btnStop" HorizontalAlignment="Left" Margin="5,5,0,0"
                         VerticalAlignment="Top" Height="32" Click="btnStop_Click" IsEnabled="False" Width="32" Grid.Column="1"/>
         </Grid>
 
