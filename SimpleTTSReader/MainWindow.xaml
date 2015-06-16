@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:SimpleTTSReader"
         xmlns:properties="clr-namespace:SimpleTTSReader.Properties"
         mc:Ignorable="d"
-        Title="Simple TTS Reader"
         Width="{Binding Source={x:Static properties:Settings.Default}, Path=Width,Mode=TwoWay}"
         Height="{Binding Source={x:Static properties:Settings.Default}, Path=Height,Mode=TwoWay}"
         Closing="Window_Closing">

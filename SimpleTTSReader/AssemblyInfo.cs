@@ -51,18 +51,5 @@ namespace SimpleTTSReader
         {
             return GetAssemblyAttribute<AssemblyTitleAttribute>(a => a.Title);
         }
-
-        public static string GetAboutDescription()
-        {
-            var example = new StringBuilder();
-            example.AppendLine($"Simple TTS Reader (v{GetVersionString()}).");
-            example.AppendLine();
-            example.AppendLine($"Issues: {Resources.GitHubIssues}");
-            example.AppendLine($"Donations: {Resources.DonateLink}");
-            example.AppendLine();
-            example.AppendLine(
-                $"Icons are made by Google (https://www.google.com) from Flaticon (http://www.flaticon.com) and are licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)");
-            return example.ToString();
-        }
     }
 }

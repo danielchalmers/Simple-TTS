@@ -33,7 +33,7 @@ namespace SimpleTTSReader
             txtDoc.Text = Settings.Default.Doc;
             txtDoc.SelectionStart = Settings.Default.SelectionStart;
 
-            Title = $"Simple TTS Reader (Beta {AssemblyInfo.GetVersionString()})";
+            Title = $"{Properties.Resources.AppName} (Beta {AssemblyInfo.GetVersionString()})";
 
             // Initialize classes.
             _speechEngine = new SpeechEngine(this);
