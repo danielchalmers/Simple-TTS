@@ -12,18 +12,17 @@
         Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="170" />
-            <ColumnDefinition Width="1.5*" />
-            <ColumnDefinition Width="170" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="32" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="42" />
             <RowDefinition Height="*" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
 
-        <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+        <Menu Grid.Column="0" Grid.Row="0">
             <MenuItem Header="_File">
                 <MenuItem Header="_Open..." Click="MenuItemOpen_Click" />
                 <Separator />
@@ -51,58 +50,31 @@
             </MenuItem>
         </Menu>
 
-        <Grid x:Name="sidebar1" Grid.Column="0" Grid.Row="2">
+        <Grid Grid.Row="2" >
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="48" />
-            </Grid.RowDefinitions>
-            <Grid x:Name="playgridparent">
-                <Button x:Name="btnStart" HorizontalAlignment="Left" Margin="34,0,0,0"
-                        VerticalAlignment="Top" Height="48" Click="btnStart_Click" Width="48" />
-                <Button x:Name="btnStop" HorizontalAlignment="Right" Margin="0,0,34,0"
-                        VerticalAlignment="Top" Height="48" Click="btnStop_Click" IsEnabled="False" Width="48" />
-            </Grid>
+            <Button x:Name="btnStart" HorizontalAlignment="Left" Margin="10,5,0,0"
+                        VerticalAlignment="Top" Height="32" Click="btnStart_Click" Width="32" Grid.Column="0"/>
+            <Button x:Name="btnStop" HorizontalAlignment="Left" Margin="10,5,0,0"
+                        VerticalAlignment="Top" Height="32" Click="btnStop_Click" IsEnabled="False" Width="32" Grid.Column="1"/>
         </Grid>
-        <Grid x:Name="sidebar3" Grid.Column="2" Grid.Row="2">
-            <TextBlock x:Name="lblVolume" Text="Volume:" HorizontalAlignment="Left" Margin="10,10,0,0"
-                       VerticalAlignment="Top" />
-            <Slider x:Name="sliderVolume" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="58,10,0,0"
-                    VerticalAlignment="Top"
-                    Value="{Binding Source={x:Static properties:Settings.Default}, Path=Volume,Mode=TwoWay}"
-                    AutoToolTipPlacement="TopLeft" Width="102" />
-            <TextBlock x:Name="lblSpeed" Text="Speed:" HorizontalAlignment="Left" Margin="10,37,0,0"
-                       VerticalAlignment="Top" />
-            <Slider x:Name="sliderSpeed" Minimum="0" Maximum="20" HorizontalAlignment="Left" Margin="58,37,0,0"
-                    VerticalAlignment="Top"
-                    Value="{Binding Source={x:Static properties:Settings.Default}, Path=Speed,Mode=TwoWay}"
-                    AutoToolTipPlacement="TopLeft" Width="102" />
-            <TextBlock x:Name="lblGender" Text="Gender:" HorizontalAlignment="Left" Margin="10,64,0,0"
-                       VerticalAlignment="Top" />
-            <ComboBox x:Name="cbGender" HorizontalAlignment="Left" Margin="58,64,0,0"
-                      VerticalAlignment="Top" Width="102"
-                      SelectedIndex="{Binding Source={x:Static properties:Settings.Default}, Path=GenderIndex,Mode=TwoWay}">
-                <ComboBoxItem Content="Male" />
-                <ComboBoxItem Content="Female" />
-            </ComboBox>
-            <Button x:Name="btnResetSettings" HorizontalAlignment="Stretch" Margin="10,0"
-                    VerticalAlignment="Bottom" Content="Default settings..." Click="btnResetSettings_Click" Height="23" />
-        </Grid>
-        <Grid x:Name="sidebar2" Grid.Column="1" Grid.Row="2">
+
+        <Grid Grid.Row="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBox x:Name="txtDoc" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0"
-                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                     AllowDrop="True"
-                     PreviewDragEnter="txtDoc_PreviewDragEnter"
-                     PreviewDragOver="txtDoc_PreviewDragEnter"
-                     PreviewDrop="txtDoc_PreviewDrop" LostFocus="txtDoc_OnLostFocus" SelectionOpacity="0.25" />
+                 HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                 AllowDrop="True"
+                 PreviewDragEnter="txtDoc_PreviewDragEnter"
+                 PreviewDragOver="txtDoc_PreviewDragEnter"
+                 PreviewDrop="txtDoc_PreviewDrop" LostFocus="txtDoc_OnLostFocus" SelectionOpacity="0.25" Margin="10,10,10,0"/>
         </Grid>
-        <Grid x:Name="sidebar2pad1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" />
-        <Grid x:Name="sidebar2pad2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" />
-        <Grid x:Name="sidebar2pad3" Grid.Column="1" Grid.Row="3">
+        <Grid Grid.Row="1" />
+        <Grid Grid.Row="4">
             <TextBlock x:Name="txtWord" TextAlignment="Center" Foreground="Gray" HorizontalAlignment="Stretch"
                        VerticalAlignment="Center" Grid.Column="0" TextTrimming="CharacterEllipsis" />
         </Grid>

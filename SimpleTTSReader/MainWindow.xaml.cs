@@ -6,6 +6,7 @@ using System.IO;
 using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
@@ -67,7 +68,7 @@ namespace SimpleTTSReader
             get { return txtDoc.SelectionStart; }
             set { txtDoc.SelectionStart = value; }
         }
-
+        
         public void DocSelect(int start, int length)
         {
             txtDoc.Select(start, length);
@@ -80,7 +81,7 @@ namespace SimpleTTSReader
 
         private static Image PlayButtonImage(string imgname)
         {
-            var finalImage = new Image {Height = 48, Stretch = Stretch.None};
+            var finalImage = new Image {Height = 32, Stretch = Stretch.None};
             var logo = new BitmapImage();
             logo.BeginInit();
             logo.UriSource = new Uri($"pack://application:,,,/SimpleTTSReader;component/Resources/{imgname}.png");
@@ -98,10 +99,6 @@ namespace SimpleTTSReader
                 btnStop.IsEnabled = true;
                 btnStart.Content = PlayButtonImage("pause");
 
-                sliderSpeed.IsEnabled = false;
-                sliderVolume.IsEnabled = false;
-                cbGender.IsEnabled = false;
-
                 txtDoc.IsReadOnly = true;
             }
             else
@@ -109,10 +106,6 @@ namespace SimpleTTSReader
                 // Finished.
                 btnStop.IsEnabled = false;
                 btnStart.Content = PlayButtonImage("play");
-
-                sliderSpeed.IsEnabled = true;
-                sliderVolume.IsEnabled = true;
-                cbGender.IsEnabled = true;
 
                 txtWord.Text = string.Empty;
 
