@@ -81,7 +81,7 @@ namespace SimpleTTSReader
 
         private static Image PlayButtonImage(string imgname)
         {
-            var finalImage = new Image {Height = 32, Stretch = Stretch.None};
+            var finalImage = new Image {Stretch = Stretch.None};
             var logo = new BitmapImage();
             logo.BeginInit();
             logo.UriSource = new Uri($"pack://application:,,,/SimpleTTSReader;component/Resources/{imgname}.png");
