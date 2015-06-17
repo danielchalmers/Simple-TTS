@@ -51,8 +51,8 @@ namespace SimpleTTSReader
             // Start update checker.
             UpdateChecker.Start();
 
-            btnStart.Content = PlayButtonImage("play");
-            btnStop.Content = PlayButtonImage("stop");
+            btnStart.Content = MediaButtonContent("play");
+            btnStop.Content = MediaButtonContent("stop");
 
             txtDoc.Focus();
         }
@@ -79,8 +79,10 @@ namespace SimpleTTSReader
             txtWord.Text = text;
         }
 
-        private static Image PlayButtonImage(string imgname)
+        private static StackPanel MediaButtonContent(string imgname)
         {
+            var stackPanel = new StackPanel {Orientation = Orientation.Horizontal};
+
             var finalImage = new Image {Stretch = Stretch.None};
             var logo = new BitmapImage();
             logo.BeginInit();
@@ -88,7 +90,15 @@ namespace SimpleTTSReader
             logo.EndInit();
             finalImage.Source = logo;
             RenderOptions.SetBitmapScalingMode(finalImage, BitmapScalingMode.NearestNeighbor);
-            return finalImage;
+
+            stackPanel.Children.Add(finalImage);
+            stackPanel.Children.Add(new TextBlock
+            {
+                Margin = new Thickness(5, 0, 0, 0),
+                Text = char.ToUpper(imgname[0]) + imgname.Substring(1)
+            });
+
+            return stackPanel;
         }
 
         public void SetUiState(bool start)
@@ -97,7 +107,7 @@ namespace SimpleTTSReader
             {
                 // Started.
                 btnStop.IsEnabled = true;
-                btnStart.Content = PlayButtonImage("pause");
+                btnStart.Content = MediaButtonContent("pause");
 
                 txtDoc.IsReadOnly = true;
             }
@@ -105,7 +115,7 @@ namespace SimpleTTSReader
             {
                 // Finished.
                 btnStop.IsEnabled = false;
-                btnStart.Content = PlayButtonImage("play");
+                btnStart.Content = MediaButtonContent("play");
 
                 txtWord.Text = string.Empty;
 
@@ -122,17 +132,17 @@ namespace SimpleTTSReader
         {
             if (_speechEngine.State == SynthesizerState.Paused)
             {
-                btnStart.Content = PlayButtonImage("pause");
+                btnStart.Content = MediaButtonContent("pause");
                 _speechEngine.Resume();
             }
             else if (_speechEngine.State == SynthesizerState.Speaking)
             {
-                btnStart.Content = PlayButtonImage("play");
+                btnStart.Content = MediaButtonContent("play");
                 _speechEngine.Pause();
             }
             else
             {
-                btnStart.Content = PlayButtonImage("pause");
+                btnStart.Content = MediaButtonContent("pause");
                 _speechEngine.Start();
             }
         }
