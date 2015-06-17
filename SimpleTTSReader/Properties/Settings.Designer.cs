@@ -85,13 +85,13 @@ namespace SimpleTTSReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int GenderIndex {
+        [global::System.Configuration.DefaultSettingValueAttribute("Male")]
+        public string Gender {
             get {
-                return ((int)(this["GenderIndex"]));
+                return ((string)(this["Gender"]));
             }
             set {
-                this["GenderIndex"] = value;
+                this["Gender"] = value;
             }
         }
         

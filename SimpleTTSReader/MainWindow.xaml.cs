@@ -73,10 +73,15 @@ namespace SimpleTTSReader
         {
             txtDoc.Select(start, length);
         }
-
+        
         public void SetCurrentWord(string text)
         {
-            txtWord.Text = text;
+            statusCurrentWord.Text = text;
+        }
+
+        public void SetProgressStatus(int current, int max)
+        {
+            statusProgress.Text = $"{current.ToString("000")} of {max.ToString("000")}";
         }
 
         private static StackPanel MediaButtonContent(string imgname)
@@ -109,6 +114,8 @@ namespace SimpleTTSReader
                 btnStop.IsEnabled = true;
                 btnStart.Content = MediaButtonContent("pause");
 
+                statusBarSeparator.Visibility = Visibility.Visible;
+
                 txtDoc.IsReadOnly = true;
             }
             else
@@ -117,7 +124,9 @@ namespace SimpleTTSReader
                 btnStop.IsEnabled = false;
                 btnStart.Content = MediaButtonContent("play");
 
-                txtWord.Text = string.Empty;
+                statusCurrentWord.Text = string.Empty;
+                statusProgress.Text = string.Empty;
+                statusBarSeparator.Visibility = Visibility.Collapsed;
 
                 txtDoc.IsReadOnly = false;
 
