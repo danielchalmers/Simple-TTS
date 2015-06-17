@@ -39,6 +39,10 @@
                 <Separator />
                 <MenuItem Header="Select _All" Command="SelectAll" />
             </MenuItem>
+            <MenuItem Header="_Playback">
+                <MenuItem Header="_Play/Pause" Click="btnStart_Click" />
+                <MenuItem Header="_Stop" Click="btnStop_Click" />
+            </MenuItem>
             <MenuItem Header="_Tools">
                 <MenuItem Header="_Options..." Click="MenuItemOptions_OnClick" />
             </MenuItem>
