@@ -25,10 +25,10 @@ namespace SimpleTTSReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("15")]
-        public double Volume {
+        [global::System.Configuration.DefaultSettingValueAttribute("75")]
+        public int Volume {
             get {
-                return ((double)(this["Volume"]));
+                return ((int)(this["Volume"]));
             }
             set {
                 this["Volume"] = value;
@@ -38,9 +38,9 @@ namespace SimpleTTSReader.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("12")]
-        public double Speed {
+        public int Speed {
             get {
-                return ((double)(this["Speed"]));
+                return ((int)(this["Speed"]));
             }
             set {
                 this["Speed"] = value;

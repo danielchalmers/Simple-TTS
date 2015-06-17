@@ -1,13 +1,11 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
-              GeneratedClassNamespace="SimpleTTSReader.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SimpleTTSReader.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Volume" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">15</Value>
+    <Setting Name="Volume" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">75</Value>
     </Setting>
-    <Setting Name="Speed" Type="System.Double" Scope="User">
+    <Setting Name="Speed" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">12</Value>
     </Setting>
     <Setting Name="MustUpgrade" Type="System.Boolean" Scope="User">

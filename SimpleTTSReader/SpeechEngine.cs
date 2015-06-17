@@ -42,8 +42,8 @@ namespace SimpleTTSReader
                 return;
             _currentPrompt = new Prompt(text);
 
-            _synthesizer.Rate = (int) (Settings.Default.Speed - 10);
-            _synthesizer.Volume = (int) Settings.Default.Volume;
+            _synthesizer.Rate = Settings.Default.Speed - 10;
+            _synthesizer.Volume = Settings.Default.Volume;
 
             _synthesizer.SelectVoiceByHints(Settings.Default.GenderIndex == 1 ? VoiceGender.Female : VoiceGender.Male);
 
