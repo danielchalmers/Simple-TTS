@@ -148,22 +148,9 @@ namespace SimpleTTSReader
             _speechEngine.Resume();
         }
 
-        private void btnResetSettings_Click(object sender, RoutedEventArgs e)
-        {
-            if (Popup.Show("Are you sure you want to reset all settings to default?\nThis cannot be undone.",
-                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                Settings.Default.Reset();
-                Settings.Default.MustUpgrade = false;
-                Settings.Default.Launches = 1;
-            }
-        }
-
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            Settings.Default.Doc = txtDoc.Text;
-            Settings.Default.SelectionStart = txtDoc.SelectionStart;
-            Settings.Default.Save();
+            SettingsHelper.SaveSettings(this);
         }
 
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
@@ -232,11 +219,7 @@ namespace SimpleTTSReader
 
         private void MenuItemOptions_OnClick(object sender, RoutedEventArgs e)
         {
-            // Save current options.
-            Settings.Default.Save();
-            // Open options window.
-            var dialog = new Options();
-            dialog.ShowDialog();
+            SettingsHelper.OpenOptions();
         }
     }
 }
