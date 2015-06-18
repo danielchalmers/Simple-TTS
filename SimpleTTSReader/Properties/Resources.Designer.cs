@@ -99,7 +99,7 @@ namespace SimpleTTSReader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://danielchalmers.github.io/Simple-TTS-Reader/donate.html.
+        ///   Looks up a localized string similar to https://danielchalmers.github.io/website/donate.html.
         /// </summary>
         public static string DonateLink {
             get {
