@@ -69,7 +69,7 @@ namespace SimpleTTSReader
 
             if (info.UpdateAvailable)
             {
-                if (Settings.Default.AutoUpdate)
+                if (silent && Settings.Default.AutoUpdate)
                 {
                     try
                     {
