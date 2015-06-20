@@ -12,7 +12,7 @@ namespace SimpleTTSReader
     {
         private static readonly DispatcherTimer _updateTimer = new DispatcherTimer();
 
-        public UpdateChecker()
+        static UpdateChecker()
         {
             _updateTimer.Tick += (sender, args) => ClickOnceHelper.CheckForUpdates(true);
             _updateTimer.Interval = new TimeSpan(1, 0, 0);
