@@ -180,15 +180,15 @@ namespace SimpleTTSReader
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
             var dia = new OpenFileDialog();
-            dia.ShowDialog();
-            OpenFile(dia.FileName);
+            if (dia.ShowDialog() ?? false)
+                OpenFile(dia.FileName);
         }
 
         private void MenuItemSaveAs_Click(object sender, RoutedEventArgs e)
         {
             var dia = new SaveFileDialog();
-            dia.ShowDialog();
-            File.WriteAllText(dia.FileName, txtDoc.Text);
+            if (dia.ShowDialog() ?? false)
+                File.WriteAllText(dia.FileName, txtDoc.Text);
         }
 
         private void OpenFile(string path)
