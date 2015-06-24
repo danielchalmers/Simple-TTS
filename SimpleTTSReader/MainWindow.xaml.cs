@@ -158,6 +158,8 @@ namespace SimpleTTSReader
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(DocText))
+                return;
             ToggleState();
         }
 
