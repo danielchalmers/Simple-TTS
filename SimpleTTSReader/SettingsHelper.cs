@@ -43,8 +43,6 @@ namespace SimpleTTSReader
 
         public static void OpenOptions()
         {
-            // Save current options.
-            Settings.Default.Save();
             // Open options window.
             var dialog = new Options();
             dialog.ShowDialog();
