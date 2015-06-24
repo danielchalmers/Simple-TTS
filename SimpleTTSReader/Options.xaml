@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:SimpleTTSReader"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:p="clr-namespace:SimpleTTSReader.Properties"
-        xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Options" SizeToContent="Height" Width="350" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
@@ -38,11 +37,6 @@
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="HorizontalAlignment" Value="Stretch" />
                     <Setter Property="Height" Value="23" />
-                </Style>
-                <Style TargetType="xctk:ColorPicker">
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="HorizontalAlignment" Value="Stretch" />
-                    <Setter Property="Height" Value="Auto" />
                 </Style>
                 <Style TargetType="CheckBox">
                     <Setter Property="VerticalAlignment" Value="Center" />
