@@ -50,7 +50,7 @@ namespace SimpleTTSReader
             _synthesizer.Rate = Settings.Default.Speed - 10;
             _synthesizer.Volume = Settings.Default.Volume;
 
-            _synthesizer.SelectVoiceByHints(Settings.Default.Gender == "Female" ? VoiceGender.Female : VoiceGender.Male);
+            _synthesizer.SelectVoiceByHints(Settings.Default.Gender);
 
             _synthesizer.SpeakAsync(_currentPrompt);
         }

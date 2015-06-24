@@ -86,9 +86,9 @@ namespace SimpleTTSReader.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Male")]
-        public string Gender {
+        public global::System.Speech.Synthesis.VoiceGender Gender {
             get {
-                return ((string)(this["Gender"]));
+                return ((global::System.Speech.Synthesis.VoiceGender)(this["Gender"]));
             }
             set {
                 this["Gender"] = value;
