@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Windows;
 using SimpleTTSReader.Properties;
 
@@ -15,6 +16,7 @@ namespace SimpleTTSReader
         public Options()
         {
             InitializeComponent();
+            cbGender.ItemsSource = Enum.GetValues(typeof(System.Speech.Synthesis.VoiceGender));
             Settings.Default.Save();
         }
 

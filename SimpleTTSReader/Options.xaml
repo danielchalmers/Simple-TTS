@@ -4,25 +4,106 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleTTSReader"
-        xmlns:properties="clr-namespace:SimpleTTSReader.Properties"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:p="clr-namespace:SimpleTTSReader.Properties"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Options" Height="640" Width="480" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Options" SizeToContent="Height" Width="350" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <xctk:PropertyGrid
-            AutoGenerateProperties="true"
-            SelectedObject="{Binding Source={x:Static properties:Settings.Default}}" IsCategorized="False"
-            ShowSortOptions="False" ShowSummary="False" ShowTitle="False" ShowSearchBox="True"
-            Background="{x:Static SystemColors.WindowBrush}" />
-        <Button x:Name="btnCancel" Content="Cancel" Margin="0,0,95,10" Width="75" Height="23"
-                Click="btnCancel_Click"
-                HorizontalAlignment="Right" VerticalAlignment="Bottom" IsCancel="True" Grid.Row="1" />
-        <Button x:Name="btnOK" Content="OK" Margin="0,10,15,10" Width="75" Height="23"
-                Click="btnOK_Click"
-                HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" Grid.Row="1" />
+        <Grid IsSharedSizeScope="True" Margin="15,10,15,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="31" SharedSizeGroup="options" />
+                <RowDefinition Height="Auto" SharedSizeGroup="options" />
+                <RowDefinition Height="Auto" SharedSizeGroup="options" />
+                <RowDefinition Height="Auto" SharedSizeGroup="options" />
+                <RowDefinition Height="Auto" SharedSizeGroup="options" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="Margin" Value="0,5,10,5" />
+                    <Setter Property="Padding" Value="0" />
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="Height" Value="23" />
+                </Style>
+                <Style TargetType="xctk:ColorPicker">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="Height" Value="Auto" />
+                </Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+                <Style TargetType="Slider">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="AutoToolTipPlacement" Value="TopLeft" />
+                </Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                </Style>
+            </Grid.Resources>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Check For Updates:" />
+            <CheckBox Grid.Row="0" Grid.Column="1"
+                      IsChecked="{Binding Source={x:Static p:Settings.Default},
+                               Path=CheckForUpdates, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Run on Startup:" />
+            <CheckBox Grid.Row="1" Grid.Column="1"
+                      IsChecked="{Binding Source={x:Static p:Settings.Default},
+                               Path=RunOnStartup, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Volume:" />
+            <Slider Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="100"
+                      Value="{Binding Source={x:Static p:Settings.Default},
+                               Path=Volume, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Speed:" />
+            <Slider Grid.Row="3" Grid.Column="1" Minimum="0" Maximum="20"
+                      Value="{Binding Source={x:Static p:Settings.Default},
+                               Path=Speed, Mode=TwoWay}" />
+            
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Gender:" />
+            <ComboBox x:Name="cbGender" Grid.Row="4" Grid.Column="1"
+                      SelectedItem="{Binding Source={x:Static p:Settings.Default},
+                               Path=Gender, Mode=TwoWay}" />
+
+
+        </Grid>
+
+        <Grid Row="1" Margin="15,10,15,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="75" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="1" x:Name="btnOK" Content="OK" Click="btnOK_Click" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" IsDefault="True" />
+            <Button Grid.Column="3" x:Name="btnCancel" Content="Cancel" Click="btnCancel_Click"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsCancel="True" />
+        </Grid>
     </Grid>
 </Window>
