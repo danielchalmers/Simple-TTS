@@ -32,8 +32,8 @@
     <ErrorReportUrl>http://danielchalmers.github.io/Simple-TTS-Reader/error.html</ErrorReportUrl>
     <ProductName>Simple TTS Reader</ProductName>
     <PublisherName>Daniel Chalmers</PublisherName>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>0.95.4.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.95.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
