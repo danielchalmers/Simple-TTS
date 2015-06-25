@@ -68,14 +68,14 @@
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Volume:" />
             <Slider Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="100"
-                      Value="{Binding Source={x:Static p:Settings.Default},
+                    Value="{Binding Source={x:Static p:Settings.Default},
                                Path=Volume, Mode=TwoWay}" />
 
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Speed:" />
             <Slider Grid.Row="3" Grid.Column="1" Minimum="0" Maximum="20"
-                      Value="{Binding Source={x:Static p:Settings.Default},
+                    Value="{Binding Source={x:Static p:Settings.Default},
                                Path=Speed, Mode=TwoWay}" />
-            
+
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Gender:" />
             <ComboBox x:Name="cbGender" Grid.Row="4" Grid.Column="1"
                       SelectedItem="{Binding Source={x:Static p:Settings.Default},

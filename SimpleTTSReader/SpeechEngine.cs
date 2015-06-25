@@ -1,6 +1,5 @@
 ﻿#region
 
-using System;
 using System.Speech.Synthesis;
 using SimpleTTSReader.Properties;
 
@@ -13,8 +12,8 @@ namespace SimpleTTSReader
         private readonly MainWindow _mainWindow;
         private readonly SpeechSynthesizer _synthesizer;
         private Prompt _currentPrompt;
-        private int _wordOffset;
         private int _speechLength;
+        private int _wordOffset;
 
         public SpeechEngine(MainWindow mainWindow)
         {
@@ -50,7 +49,9 @@ namespace SimpleTTSReader
             _synthesizer.Rate = Settings.Default.Speed - 10;
             _synthesizer.Volume = Settings.Default.Volume;
 
-            _synthesizer.SelectVoiceByHints(Settings.Default.Gender == VoiceGender.Male ? System.Speech.Synthesis.VoiceGender.Male : System.Speech.Synthesis.VoiceGender.Female);
+            _synthesizer.SelectVoiceByHints(Settings.Default.Gender == VoiceGender.Male
+                ? System.Speech.Synthesis.VoiceGender.Male
+                : System.Speech.Synthesis.VoiceGender.Female);
 
             _synthesizer.SpeakAsync(_currentPrompt);
         }

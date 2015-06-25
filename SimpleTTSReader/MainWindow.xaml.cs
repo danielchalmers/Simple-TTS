@@ -73,7 +73,7 @@ namespace SimpleTTSReader
         {
             txtDoc.Select(start, length);
         }
-        
+
         public void SetCurrentWord(string text)
         {
             statusCurrentWord.Text = text;

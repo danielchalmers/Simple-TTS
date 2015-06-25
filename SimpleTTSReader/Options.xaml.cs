@@ -16,7 +16,7 @@ namespace SimpleTTSReader
         public Options()
         {
             InitializeComponent();
-            cbGender.ItemsSource = Enum.GetValues(typeof(VoiceGender));
+            cbGender.ItemsSource = Enum.GetValues(typeof (VoiceGender));
             Settings.Default.Save();
         }
 
