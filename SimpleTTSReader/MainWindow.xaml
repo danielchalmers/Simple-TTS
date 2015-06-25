@@ -84,7 +84,7 @@
                     <TextBlock x:Name="statusProgress" />
                     <Rectangle x:Name="statusBarSeparator" Visibility="Collapsed" VerticalAlignment="Stretch" Width="1"
                                Margin="5,0,5,0" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                    <TextBlock x:Name="statusCurrentWord" />
+                    <TextBlock x:Name="statusCurrentWord" TextTrimming="CharacterEllipsis" Width="100"/>
                 </StackPanel>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
