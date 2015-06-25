@@ -6,7 +6,7 @@
       <Value Profile="(Default)">75</Value>
     </Setting>
     <Setting Name="Speed" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">12</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="MustUpgrade" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
