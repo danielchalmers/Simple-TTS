@@ -32,7 +32,9 @@ namespace SimpleTTSReader
             txtDoc.Text = Settings.Default.Doc;
             txtDoc.SelectionStart = Settings.Default.SelectionStart;
 
-            Title = $"{Properties.Resources.AppName} (Beta {AssemblyInfo.GetVersionString()})";
+            Title = AssemblyInfo.IsBeta
+                ? $"{Properties.Resources.AppName} (Beta {AssemblyInfo.GetVersionString()})"
+                : Properties.Resources.AppName;
 
             // Initialize classes.
             _speechEngine = new SpeechEngine(this);

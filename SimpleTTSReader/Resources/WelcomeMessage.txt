@@ -1,5 +1,3 @@
-WARNING: This application is currently in beta and will receive frequent updates and may have issues.
-
 Hello {0}.
 Welcome to Simple Text to Speech Reader version {1}.
 

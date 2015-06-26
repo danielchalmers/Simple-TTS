@@ -3,6 +3,7 @@
 using System;
 using System.Deployment.Application;
 using System.Reflection;
+using SimpleTTSReader.Properties;
 
 #endregion
 
@@ -10,6 +11,8 @@ namespace SimpleTTSReader
 {
     internal class AssemblyInfo
     {
+        public static bool IsBeta => GetVersion().Minor == Settings.Default.BetaVersion;
+
         public static string GetAssemblyAttribute<T>(Func<T, string> value)
             where T : Attribute
         {
