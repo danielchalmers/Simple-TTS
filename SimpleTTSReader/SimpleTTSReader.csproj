@@ -33,7 +33,7 @@
     <ProductName>Simple TTS Reader</ProductName>
     <PublisherName>Daniel Chalmers</PublisherName>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>0.95.5.%2a</ApplicationVersion>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
