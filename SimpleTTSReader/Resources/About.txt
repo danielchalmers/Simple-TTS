@@ -1,12 +1,6 @@
-{0} ({1}).
+{0} ({1})
 
+{2}
+Icons are made by Google from Flaticon and are licensed under CC BY 3.0
 
-Links & Credit:
- Website: {2}
- Issues: {3}
- Donations: {4}
-
- Icons are made by Google (https://www.google.com) from Flaticon (http://www.flaticon.com) and are licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
-
-
- {5}
+{3}

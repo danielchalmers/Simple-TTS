@@ -22,7 +22,7 @@ namespace SimpleTTSReader
             GetAssemblyAttribute<AssemblyDescriptionAttribute>(a => a.Description);
 
         public static string CustomDescription { get; } = string.Format(Resources.About, Title, Version,
-            Resources.Website, Resources.GitHubIssues, Resources.DonateLink, Copyright);
+            Resources.Website, Copyright);
 
         private static string GetAssemblyAttribute<T>(Func<T, string> value)
             where T : Attribute
