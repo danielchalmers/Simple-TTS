@@ -165,7 +165,7 @@ namespace SimpleTTSReader
 
         private void MenuItemSaveAs_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new SaveFileDialog();
+            var dialog = new SaveFileDialog {Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"};
             if (dialog.ShowDialog() ?? false)
                 File.WriteAllText(dialog.FileName, Settings.Default.Document);
         }
