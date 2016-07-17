@@ -14,13 +14,8 @@ namespace SimpleTTSReader
         public About()
         {
             InitializeComponent();
-            txtAbout.Text = GetAboutText();
+            txtAbout.Text = AssemblyInfo.CustomDescription;
         }
-
-        public static string GetAboutText() => string.Format(Properties.Resources.About, AssemblyInfo.GetTitle(),
-            AssemblyInfo.GetVersion(),
-            Properties.Resources.Website, Properties.Resources.GitHubIssues, Properties.Resources.DonateLink,
-            AssemblyInfo.GetCopyright());
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {

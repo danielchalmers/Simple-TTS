@@ -7,12 +7,12 @@ using SimpleTTSReader.Properties;
 
 namespace SimpleTTSReader
 {
-    internal class Popup
+    public static class Popup
     {
-        public static MessageBoxResult Show(string text, MessageBoxButton btn = MessageBoxButton.OK,
-            MessageBoxImage img = MessageBoxImage.Information, MessageBoxResult defaultbtn = MessageBoxResult.OK)
+        public static MessageBoxResult Show(string text, MessageBoxButton button = MessageBoxButton.OK,
+            MessageBoxImage image = MessageBoxImage.Information, MessageBoxResult defaultButton = MessageBoxResult.OK)
         {
-            return MessageBox.Show(text, Resources.AppName, btn, img, defaultbtn);
+            return MessageBox.Show(text, Resources.AppName, button, image, defaultButton);
         }
     }
 }

@@ -110,12 +110,12 @@ namespace SimpleTTSReader.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Doc {
+        public string Document {
             get {
-                return ((string)(this["Doc"]));
+                return ((string)(this["Document"]));
             }
             set {
-                this["Doc"] = value;
+                this["Document"] = value;
             }
         }
         
@@ -131,15 +131,6 @@ namespace SimpleTTSReader.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("95")]
-        public int BetaVersion {
-            get {
-                return ((int)(this["BetaVersion"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
@@ -149,18 +140,6 @@ namespace SimpleTTSReader.Properties {
             }
             set {
                 this["RunOnStartup"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ResetSettings {
-            get {
-                return ((bool)(this["ResetSettings"]));
-            }
-            set {
-                this["ResetSettings"] = value;
             }
         }
     }

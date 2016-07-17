@@ -6,10 +6,15 @@
         xmlns:local="clr-namespace:SimpleTTSReader"
         xmlns:properties="clr-namespace:SimpleTTSReader.Properties"
         mc:Ignorable="d"
+        Title="{x:Static properties:Resources.AppName}"
         Width="{Binding Source={x:Static properties:Settings.Default}, Path=Width,Mode=TwoWay}"
         Height="{Binding Source={x:Static properties:Settings.Default}, Path=Height,Mode=TwoWay}"
-        Closing="Window_Closing"
-        MinWidth="400" MinHeight="300">
+        MinWidth="400" MinHeight="300"
+        Closing="Window_Closing">
+    <Window.Resources>
+        <local:SynthesizerStateIsNotReadyToBoolConverter x:Key="SynthesizerStateIsNotReadyToBoolConverter" />
+        <local:SynthesizerStateIsNotReadyToVisibilityConverter x:Key="SynthesizerStateIsNotReadyToVisibilityConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -35,13 +40,34 @@
                 <MenuItem Header="Cu_t" Command="Cut" />
                 <MenuItem Header="_Copy" Command="Copy" />
                 <MenuItem Header="_Paste" Command="Paste" />
-                <MenuItem Header="De_lete" Command="Delete" />
+                <MenuItem Header="_Delete" Command="Delete" />
                 <Separator />
                 <MenuItem Header="Select _All" Command="SelectAll" />
             </MenuItem>
             <MenuItem Header="_Playback">
-                <MenuItem Header="_Play/Pause" Click="btnStart_Click" />
-                <MenuItem Header="_Stop" Click="btnStop_Click" />
+                <MenuItem Click="btnStart_Click">
+                    <MenuItem.Header>
+                        <TextBlock>
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SynthesizerState}" Value="Speaking">
+                                            <Setter Property="Text" Value="_Pause" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SynthesizerState}" Value="Paused">
+                                            <Setter Property="Text" Value="_Play" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SynthesizerState}" Value="Ready">
+                                            <Setter Property="Text" Value="_Play" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Header="_Stop" Click="btnStop_Click"
+                          IsEnabled="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}" />
             </MenuItem>
             <MenuItem Header="_Tools">
                 <MenuItem Header="_Options..." Click="MenuItemOptions_OnClick" />
@@ -56,47 +82,110 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnStart" HorizontalAlignment="Left" Margin="10,10,0,0"
-                    VerticalAlignment="Top" Height="32" Width="64" Click="btnStart_Click" Grid.Column="0" />
-            <Button x:Name="btnStop" HorizontalAlignment="Left" Margin="5,10,0,0"
-                    VerticalAlignment="Top" Height="32" Width="64" Click="btnStop_Click" Grid.Column="1"
-                    IsEnabled="False" />
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Width" Value="64" />
+                    <Setter Property="Height" Value="32" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                </Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Orientation" Value="Horizontal" />
+                </Style>
+            </Grid.Resources>
+            <Button Margin="10,10,0,0" x:Name="btnStart" Click="btnStart_Click" Grid.Column="0">
+                <DockPanel>
+                    <Image Stretch="None">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SynthesizerState}" Value="Speaking">
+                                        <Setter Property="Source" Value="Resources/pause.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SynthesizerState}" Value="Paused">
+                                        <Setter Property="Source" Value="Resources/play.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SynthesizerState}" Value="Ready">
+                                        <Setter Property="Source" Value="Resources/play.png" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Margin="5,0,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SynthesizerState}" Value="Speaking">
+                                        <Setter Property="Text" Value="Pause" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SynthesizerState}" Value="Paused">
+                                        <Setter Property="Text" Value="Play" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SynthesizerState}" Value="Ready">
+                                        <Setter Property="Text" Value="Play" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </DockPanel>
+            </Button>
+            <Button Margin="5,10,0,0" Click="btnStop_Click" Grid.Column="1"
+                    IsEnabled="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}">
+                <StackPanel>
+                    <Image Stretch="None" Source="Resources/stop.png" />
+                    <TextBlock Margin="5,0,0,0" Text="Stop" />
+                </StackPanel>
+            </Button>
         </Grid>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtDoc" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0"
+            <TextBox x:Name="txtDocument" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0"
                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
                      AllowDrop="True"
-                     PreviewDragEnter="txtDoc_PreviewDragEnter"
-                     PreviewDragOver="txtDoc_PreviewDragEnter"
-                     PreviewDrop="txtDoc_PreviewDrop" LostFocus="txtDoc_OnLostFocus" SelectionOpacity="0.25"
-                     Margin="10,10,10,5" />
+                     PreviewDragEnter="txtDocument_PreviewDragEnter"
+                     PreviewDragOver="txtDocument_PreviewDragEnter"
+                     PreviewDrop="txtDocument_PreviewDrop"
+                     LostFocus="txtDocument_OnLostFocus"
+                     SelectionOpacity="0.25"
+                     Margin="10,10,10,5"
+                     IsReadOnly="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}"
+                     Text="{Binding Path=Document, Source={x:Static properties:Settings.Default}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <StatusBar Grid.Row="3">
             <StatusBarItem HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="statusProgress" />
-                    <Rectangle x:Name="statusBarSeparator" Visibility="Collapsed" VerticalAlignment="Stretch" Width="1"
+                <StackPanel Orientation="Horizontal"
+                            Visibility="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToVisibilityConverter}}">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} of {1}">
+                                <Binding Path="CurrentCharacterIndex" />
+                                <Binding Path="MaxCharacters" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <Rectangle VerticalAlignment="Stretch" Width="1"
                                Margin="5,0,5,0" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                    <TextBlock x:Name="statusCurrentWord" TextTrimming="CharacterEllipsis" Width="100" />
+                    <TextBlock Text="{Binding CurrentWord}" TextTrimming="CharacterEllipsis" Width="100" />
                 </StackPanel>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Gender: " />
-                    <TextBlock Text="{Binding Source={x:Static properties:Settings.Default}, Path=Gender,Mode=OneWay}" />
+                    <TextBlock Text="{Binding Path=Gender, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
                     <Rectangle VerticalAlignment="Stretch" Width="1" Margin="5,0,5,0"
                                Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
                     <TextBlock Text="Speed: " />
-                    <TextBlock Text="{Binding Source={x:Static properties:Settings.Default}, Path=Speed,Mode=OneWay}" />
+                    <TextBlock Text="{Binding Path=Speed, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
                     <Rectangle VerticalAlignment="Stretch" Width="1" Margin="5,0,5,0"
                                Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
                     <TextBlock Text="Volume: " />
-                    <TextBlock Text="{Binding Source={x:Static properties:Settings.Default}, Path=Volume,Mode=OneWay}" />
+                    <TextBlock Text="{Binding Path=Volume, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>

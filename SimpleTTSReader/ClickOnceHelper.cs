@@ -2,8 +2,6 @@
 
 using System;
 using System.Deployment.Application;
-using System.Diagnostics;
-using System.Windows;
 using Microsoft.Win32;
 using SimpleTTSReader.Properties;
 
@@ -11,24 +9,26 @@ using SimpleTTSReader.Properties;
 
 namespace SimpleTTSReader
 {
-    internal class ClickOnceHelper
+    public static class ClickOnceHelper
     {
-        public static readonly string AppPath =
+        private static readonly string AppPath =
             $"\"{Environment.GetFolderPath(Environment.SpecialFolder.Programs)}\\Daniel Chalmers\\{Resources.AppName}.appref-ms\"";
 
         public static bool IsFirstLaunch => Settings.Default.Launches == 1;
         public static bool IsUpdateable => ApplicationDeployment.IsNetworkDeployed;
 
-        public static void RunOnStartup(bool runonstartup)
+        public static void SetRunOnStartup(bool runOnStartup)
         {
             try
             {
                 var registryKey = Registry.CurrentUser.OpenSubKey
                     ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                if (runonstartup)
-                    registryKey?.SetValue(Resources.AppPathName, AppPath);
+                if (registryKey == null)
+                    return;
+                if (runOnStartup)
+                    registryKey.SetValue(Resources.AppPathName, AppPath);
                 else
-                    registryKey?.DeleteValue(Resources.AppPathName);
+                    registryKey.DeleteValue(Resources.AppPathName);
             }
             catch
             {

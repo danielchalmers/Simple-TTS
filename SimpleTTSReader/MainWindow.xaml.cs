@@ -5,9 +5,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Speech.Synthesis;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using SimpleTTSReader.Properties;
 
@@ -18,9 +15,16 @@ namespace SimpleTTSReader
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private readonly SpeechEngine _speechEngine;
+        private readonly SpeechSynthesizer _synthesizer;
+        private int _currentCharacterIndex;
+        private Prompt _currentPrompt;
+        private string _currentWord;
+        private int _maxCharacters;
+        private int _speechLength;
+        private SynthesizerState _synthesizerState;
+        private int _wordOffset;
 
         public MainWindow()
         {
@@ -29,190 +33,170 @@ namespace SimpleTTSReader
             SettingsHelper.UpgradeSettings();
             Settings.Default.Launches++;
 
-            txtDoc.Text = Settings.Default.Doc;
-            txtDoc.SelectionStart = Settings.Default.SelectionStart;
+            txtDocument.SelectionStart = Settings.Default.SelectionStart;
 
-            Title = AssemblyInfo.IsBeta
-                ? $"{Properties.Resources.AppName} (Beta {AssemblyInfo.GetVersionString()})"
-                : Properties.Resources.AppName;
-
-            // Initialize classes.
-            _speechEngine = new SpeechEngine(this);
+            _synthesizer = new SpeechSynthesizer();
+            _synthesizer.SpeakCompleted += (sender, args) => ResetDocumentSelection();
+            _synthesizer.StateChanged += (sender, args) => SynthesizerState = args.State;
+            _synthesizer.SpeakProgress += Synthesizer_OnSpeakProgress;
 
             if (ClickOnceHelper.IsFirstLaunch)
             {
-                txtDoc.Text = string.Format(Properties.Resources.WelcomeMessage, Environment.UserName,
-                    AssemblyInfo.GetVersionString(), Properties.Resources.GitHubIssues);
+                Settings.Default.Document = string.Format(Properties.Resources.WelcomeMessage, Environment.UserName,
+                    AssemblyInfo.Version, Properties.Resources.GitHubIssues);
 
-                _speechEngine.Start();
-                txtDoc.Text +=
-                    $"{Environment.NewLine}{Environment.NewLine}{AssemblyInfo.GetCopyright()}";
-                txtDoc.Text += $"{Environment.NewLine}{Environment.NewLine}(This message will only appear once.)";
+                StartSpeech();
+                Settings.Default.Document +=
+                    $"{Environment.NewLine}{Environment.NewLine}{AssemblyInfo.Copyright}";
+                Settings.Default.Document +=
+                    $"{Environment.NewLine}{Environment.NewLine}(This message will only appear once.)";
             }
 
-            btnStart.Content = MediaButtonContent("play");
-            btnStop.Content = MediaButtonContent("stop");
-
-            txtDoc.Focus();
+            DataContext = this;
+            txtDocument.Focus();
         }
 
-        public string DocText
+        public SynthesizerState SynthesizerState
         {
-            get { return txtDoc.Text; }
-            set { txtDoc.Text = value; }
-        }
-
-        public int DocSelection
-        {
-            get { return txtDoc.SelectionStart; }
-            set { txtDoc.SelectionStart = value; }
-        }
-
-        public void DocSelect(int start, int length)
-        {
-            txtDoc.Select(start, length);
-        }
-
-        public void SetCurrentWord(string text)
-        {
-            statusCurrentWord.Text = text;
-        }
-
-        public void SetProgressStatus(int current, int max)
-        {
-            statusProgress.Text = $"{current.ToString("000")} of {max.ToString("000")}";
-        }
-
-        private static StackPanel MediaButtonContent(string imgname)
-        {
-            var stackPanel = new StackPanel {Orientation = Orientation.Horizontal};
-
-            var finalImage = new Image {Stretch = Stretch.None};
-            var logo = new BitmapImage();
-            logo.BeginInit();
-            logo.UriSource = new Uri($"pack://application:,,,/SimpleTTSReader;component/Resources/{imgname}.png");
-            logo.EndInit();
-            finalImage.Source = logo;
-            RenderOptions.SetBitmapScalingMode(finalImage, BitmapScalingMode.NearestNeighbor);
-
-            stackPanel.Children.Add(finalImage);
-            stackPanel.Children.Add(new TextBlock
+            get { return _synthesizerState; }
+            set
             {
-                Margin = new Thickness(5, 0, 0, 0),
-                Text = char.ToUpper(imgname[0]) + imgname.Substring(1)
-            });
-
-            return stackPanel;
-        }
-
-        public void SetUiState(bool start)
-        {
-            if (start)
-            {
-                // Started.
-                btnStop.IsEnabled = true;
-                btnStart.Content = MediaButtonContent("pause");
-
-                statusBarSeparator.Visibility = Visibility.Visible;
-
-                txtDoc.IsReadOnly = true;
+                if (_synthesizerState != value)
+                {
+                    _synthesizerState = value;
+                    RaisePropertyChanged(nameof(SynthesizerState));
+                }
             }
-            else
+        }
+
+        public int CurrentCharacterIndex
+        {
+            get { return _currentCharacterIndex; }
+            set
             {
-                // Finished.
-                btnStop.IsEnabled = false;
-                btnStart.Content = MediaButtonContent("play");
-
-                statusCurrentWord.Text = string.Empty;
-                statusProgress.Text = string.Empty;
-                statusBarSeparator.Visibility = Visibility.Collapsed;
-
-                txtDoc.IsReadOnly = false;
-
-                txtDoc.SelectionStart = 0;
-                txtDoc.Select(0, 0);
-
-                btnStart.Focus();
+                if (_currentCharacterIndex != value)
+                {
+                    _currentCharacterIndex = value;
+                    RaisePropertyChanged(nameof(CurrentCharacterIndex));
+                }
             }
+        }
+
+        public string CurrentWord
+        {
+            get { return _currentWord; }
+            set
+            {
+                if (_currentWord != value)
+                {
+                    _currentWord = value;
+                    RaisePropertyChanged(nameof(CurrentWord));
+                }
+            }
+        }
+
+        public int MaxCharacters
+        {
+            get { return _maxCharacters; }
+            set
+            {
+                if (_maxCharacters != value)
+                {
+                    _maxCharacters = value;
+                    RaisePropertyChanged(nameof(MaxCharacters));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            Settings.Default.SelectionStart = txtDocument.SelectionStart;
+            SettingsHelper.SaveSettings();
+            StopSpeech();
+        }
+
+        private void Synthesizer_OnSpeakProgress(object sender, SpeakProgressEventArgs e)
+        {
+            CurrentWord = e.Text;
+            CurrentCharacterIndex = e.CharacterPosition + e.Text.Length;
+            MaxCharacters = _speechLength;
+            txtDocument.Select(e.CharacterPosition + _wordOffset, e.Text.Length);
+        }
+
+        private void RaisePropertyChanged(string prop)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
         private void ToggleState()
         {
-            if (_speechEngine.State == SynthesizerState.Paused)
+            switch (_synthesizer.State)
             {
-                btnStart.Content = MediaButtonContent("pause");
-                _speechEngine.Resume();
-            }
-            else if (_speechEngine.State == SynthesizerState.Speaking)
-            {
-                btnStart.Content = MediaButtonContent("play");
-                _speechEngine.Pause();
-            }
-            else
-            {
-                btnStart.Content = MediaButtonContent("pause");
-                _speechEngine.Start();
+                case SynthesizerState.Paused:
+                    ResumeSpeech();
+                    break;
+                case SynthesizerState.Speaking:
+                    PauseSpeech();
+                    break;
+                default:
+                    StartSpeech();
+                    break;
             }
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(DocText))
-                return;
             ToggleState();
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            _speechEngine.Stop();
-            _speechEngine.Resume();
-        }
-
-        private void Window_Closing(object sender, CancelEventArgs e)
-        {
-            SettingsHelper.SaveSettings(this);
+            StopSpeech();
+            ResetDocumentSelection();
         }
 
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Close();
         }
 
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
-            var dia = new OpenFileDialog();
-            if (dia.ShowDialog() ?? false)
-                OpenFile(dia.FileName);
+            var dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() ?? false)
+                OpenFile(dialog.FileName);
         }
 
         private void MenuItemSaveAs_Click(object sender, RoutedEventArgs e)
         {
-            var dia = new SaveFileDialog();
-            if (dia.ShowDialog() ?? false)
-                File.WriteAllText(dia.FileName, txtDoc.Text);
+            var dialog = new SaveFileDialog();
+            if (dialog.ShowDialog() ?? false)
+                File.WriteAllText(dialog.FileName, Settings.Default.Document);
         }
 
-        private void OpenFile(string path)
+        private static void OpenFile(string path)
         {
-            if (txtDoc.Text.Length > 0 &&
+            if (Settings.Default.Document.Length > 0 &&
                 Popup.Show("Are you sure you want to open this file? You will lose all current text.",
                     MessageBoxButton.YesNo) == MessageBoxResult.No)
                 return;
 
-            txtDoc.Text = File.ReadAllText(path);
+            Settings.Default.Document = File.ReadAllText(path);
         }
 
-        private void txtDoc_PreviewDragEnter(object sender, DragEventArgs e)
+        private void txtDocument_PreviewDragEnter(object sender, DragEventArgs e)
         {
-            if (_speechEngine.State == SynthesizerState.Speaking)
+            if (_synthesizer.State == SynthesizerState.Speaking)
                 return;
             e.Effects = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
             e.Handled = true;
         }
 
-        private void txtDoc_PreviewDrop(object sender, DragEventArgs e)
+        private void txtDocument_PreviewDrop(object sender, DragEventArgs e)
         {
-            if (_speechEngine.State == SynthesizerState.Speaking)
+            if (_synthesizer.State == SynthesizerState.Speaking)
                 return;
             if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
             var files = (string[]) e.Data.GetData(DataFormats.FileDrop);
@@ -221,20 +205,68 @@ namespace SimpleTTSReader
             e.Handled = true;
         }
 
-        private void txtDoc_OnLostFocus(object sender, RoutedEventArgs e)
+        private void txtDocument_OnLostFocus(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
         }
 
         private void MenuItemAbout_OnClick(object sender, RoutedEventArgs e)
         {
-            var dia = new About();
-            dia.ShowDialog();
+            var dialog = new About();
+            dialog.ShowDialog();
         }
 
         private void MenuItemOptions_OnClick(object sender, RoutedEventArgs e)
         {
             SettingsHelper.OpenOptions();
+        }
+
+        private void StartSpeech()
+        {
+            var selection = txtDocument.SelectionStart;
+            if (selection >= Settings.Default.Document.Length || selection == -1)
+                selection = 0;
+            var text = Settings.Default.Document.Substring(selection, Settings.Default.Document.Length - selection);
+            _wordOffset = selection;
+            if (string.IsNullOrWhiteSpace(text))
+                return;
+            _currentPrompt = new Prompt(text);
+            _speechLength = text.Length;
+            _synthesizer.Rate = Settings.Default.Speed - 10;
+            _synthesizer.Volume = Settings.Default.Volume;
+
+            _synthesizer.SelectVoiceByHints(Settings.Default.Gender == VoiceGender.Male
+                ? System.Speech.Synthesis.VoiceGender.Male
+                : System.Speech.Synthesis.VoiceGender.Female);
+
+            _synthesizer.SpeakAsync(_currentPrompt);
+        }
+
+        private void StopSpeech()
+        {
+            if (_currentPrompt == null)
+                return;
+            _synthesizer.SpeakAsyncCancel(_currentPrompt);
+            _currentPrompt = null;
+            _synthesizer.Resume();
+
+            btnStart.Focus();
+        }
+
+        private void PauseSpeech()
+        {
+            _synthesizer.Pause();
+        }
+
+        private void ResumeSpeech()
+        {
+            _synthesizer.Resume();
+        }
+
+        private void ResetDocumentSelection()
+        {
+            txtDocument.SelectionStart = 0;
+            txtDocument.Select(0, 0);
         }
     }
 }

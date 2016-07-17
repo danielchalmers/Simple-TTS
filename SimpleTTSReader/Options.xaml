@@ -7,8 +7,9 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:p="clr-namespace:SimpleTTSReader.Properties"
         mc:Ignorable="d"
-        Title="Options" SizeToContent="Height" Width="350" ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        Title="Options"
+        Width="350" SizeToContent="Height"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -55,8 +56,8 @@
                 </Style>
             </Grid.Resources>
 
-            <TextBlock Grid.Column="0" Text="Run on Startup:" />
-            <CheckBox Grid.Column="1"
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Run on Startup:" />
+            <CheckBox Grid.Row="0" Grid.Column="1"
                       IsChecked="{Binding Source={x:Static p:Settings.Default},
                                Path=RunOnStartup, Mode=TwoWay}" />
 
@@ -74,8 +75,6 @@
             <ComboBox x:Name="cbGender" Grid.Row="3" Grid.Column="1"
                       SelectedItem="{Binding Source={x:Static p:Settings.Default},
                                Path=Gender, Mode=TwoWay}" />
-
-
         </Grid>
 
         <Grid Row="1" Margin="15,10,15,15">
@@ -89,10 +88,8 @@
                 <RowDefinition Height="23" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="1" x:Name="btnOK" Content="OK" Click="btnOK_Click" HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch" IsDefault="True" />
-            <Button Grid.Column="3" x:Name="btnCancel" Content="Cancel" Click="btnCancel_Click"
-                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsCancel="True" />
+            <Button Grid.Column="1" Content="OK" Click="btnOK_Click" IsDefault="True" />
+            <Button Grid.Column="3" Content="Cancel" Click="btnCancel_Click" IsCancel="True" />
         </Grid>
     </Grid>
 </Window>

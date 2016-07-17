@@ -9,48 +9,26 @@ using SimpleTTSReader.Properties;
 
 namespace SimpleTTSReader
 {
-    internal class AssemblyInfo
+    public static class AssemblyInfo
     {
-        public static bool IsBeta => GetVersion().Minor == Settings.Default.BetaVersion;
+        public static Version Version { get; } = ApplicationDeployment.IsNetworkDeployed
+            ? ApplicationDeployment.CurrentDeployment.CurrentVersion
+            : Assembly.GetExecutingAssembly().GetName().Version;
 
-        public static string GetAssemblyAttribute<T>(Func<T, string> value)
+        public static string Copyright { get; } = GetAssemblyAttribute<AssemblyCopyrightAttribute>(a => a.Copyright);
+        public static string Title { get; } = GetAssemblyAttribute<AssemblyTitleAttribute>(a => a.Title);
+
+        public static string Description { get; } =
+            GetAssemblyAttribute<AssemblyDescriptionAttribute>(a => a.Description);
+
+        public static string CustomDescription { get; } = string.Format(Resources.About, Title, Version,
+            Resources.Website, Resources.GitHubIssues, Resources.DonateLink, Copyright);
+
+        private static string GetAssemblyAttribute<T>(Func<T, string> value)
             where T : Attribute
         {
             var attribute = (T) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof (T));
             return value.Invoke(attribute);
-        }
-
-        public static string GetVersionString()
-        {
-            var obj = ApplicationDeployment.IsNetworkDeployed
-                ? ApplicationDeployment.CurrentDeployment.
-                    CurrentVersion
-                : Assembly.GetExecutingAssembly().GetName().Version;
-            return $"{obj.Major}.{obj.Minor}.{obj.Build}";
-        }
-
-        public static string GetVersionString(Version version)
-        {
-            return $"{version.Major}.{version.Minor}.{version.Build}";
-        }
-
-        public static Version GetVersion()
-        {
-            var obj = ApplicationDeployment.IsNetworkDeployed
-                ? ApplicationDeployment.CurrentDeployment.
-                    CurrentVersion
-                : Assembly.GetExecutingAssembly().GetName().Version;
-            return obj;
-        }
-
-        public static string GetCopyright()
-        {
-            return GetAssemblyAttribute<AssemblyCopyrightAttribute>(a => a.Copyright);
-        }
-
-        public static string GetTitle()
-        {
-            return GetAssemblyAttribute<AssemblyTitleAttribute>(a => a.Title);
         }
     }
 }
