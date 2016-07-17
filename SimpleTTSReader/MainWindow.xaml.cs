@@ -50,9 +50,6 @@ namespace SimpleTTSReader
                 txtDoc.Text += $"{Environment.NewLine}{Environment.NewLine}(This message will only appear once.)";
             }
 
-            // Start update checker.
-            UpdateChecker.Start();
-
             btnStart.Content = MediaButtonContent("play");
             btnStop.Content = MediaButtonContent("stop");
 
@@ -233,11 +230,6 @@ namespace SimpleTTSReader
         {
             var dia = new About();
             dia.ShowDialog();
-        }
-
-        private void MenuItemUpdates_OnClick(object sender, RoutedEventArgs e)
-        {
-            ClickOnceHelper.CheckForUpdates();
         }
 
         private void MenuItemOptions_OnClick(object sender, RoutedEventArgs e)
