@@ -151,6 +151,7 @@
                      PreviewDragOver="txtDocument_PreviewDragEnter"
                      PreviewDrop="txtDocument_PreviewDrop"
                      LostFocus="txtDocument_OnLostFocus"
+                     PreviewMouseLeftButtonDown="txtDocument_OnPreviewMouseLeftButtonDown"
                      SelectionOpacity="0.25"
                      Margin="10,10,10,5"
                      IsReadOnly="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}"

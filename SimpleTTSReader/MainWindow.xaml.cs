@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Speech.Synthesis;
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.Win32;
 using SimpleTTSReader.Properties;
 
@@ -208,6 +209,12 @@ namespace SimpleTTSReader
         private void txtDocument_OnLostFocus(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void txtDocument_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (SynthesizerState == SynthesizerState.Speaking)
+                e.Handled = true;
         }
 
         private void MenuItemAbout_OnClick(object sender, RoutedEventArgs e)
