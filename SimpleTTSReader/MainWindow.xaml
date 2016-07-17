@@ -28,8 +28,6 @@
 
         <Menu Grid.Column="0" Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_Open..." Click="MenuItemOpen_Click" />
-                <Separator />
                 <MenuItem Header="Save _As..." Click="MenuItemSaveAs_Click" />
                 <Separator />
                 <MenuItem Header="E_xit" Click="MenuItemExit_Click" />
@@ -146,10 +144,6 @@
             </Grid.ColumnDefinitions>
             <TextBox x:Name="txtDocument" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0"
                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                     AllowDrop="True"
-                     PreviewDragEnter="txtDocument_PreviewDragEnter"
-                     PreviewDragOver="txtDocument_PreviewDragEnter"
-                     PreviewDrop="txtDocument_PreviewDrop"
                      LostFocus="txtDocument_OnLostFocus"
                      PreviewMouseLeftButtonDown="txtDocument_OnPreviewMouseLeftButtonDown"
                      SelectionOpacity="0.25"

@@ -163,47 +163,11 @@ namespace SimpleTTSReader
             Close();
         }
 
-        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new OpenFileDialog();
-            if (dialog.ShowDialog() ?? false)
-                OpenFile(dialog.FileName);
-        }
-
         private void MenuItemSaveAs_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new SaveFileDialog();
             if (dialog.ShowDialog() ?? false)
                 File.WriteAllText(dialog.FileName, Settings.Default.Document);
-        }
-
-        private static void OpenFile(string path)
-        {
-            if (Settings.Default.Document.Length > 0 &&
-                Popup.Show("Are you sure you want to open this file? You will lose all current text.",
-                    MessageBoxButton.YesNo) == MessageBoxResult.No)
-                return;
-
-            Settings.Default.Document = File.ReadAllText(path);
-        }
-
-        private void txtDocument_PreviewDragEnter(object sender, DragEventArgs e)
-        {
-            if (_synthesizer.State == SynthesizerState.Speaking)
-                return;
-            e.Effects = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
-            e.Handled = true;
-        }
-
-        private void txtDocument_PreviewDrop(object sender, DragEventArgs e)
-        {
-            if (_synthesizer.State == SynthesizerState.Speaking)
-                return;
-            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
-            var files = (string[]) e.Data.GetData(DataFormats.FileDrop);
-            if (files != null && files.Length != 0)
-                OpenFile(files[0]);
-            e.Handled = true;
         }
 
         private void txtDocument_OnLostFocus(object sender, RoutedEventArgs e)
