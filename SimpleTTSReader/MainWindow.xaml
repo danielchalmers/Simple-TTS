@@ -78,19 +78,21 @@
             </Grid.ColumnDefinitions>
             <Grid.Resources>
                 <Style TargetType="{x:Type Button}">
-                    <Setter Property="Width" Value="64" />
-                    <Setter Property="Height" Value="32" />
+                    <Setter Property="Width" Value="75" />
+                    <Setter Property="Height" Value="30" />
                     <Setter Property="HorizontalAlignment" Value="Left" />
                     <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="5,0,5,0" />
                 </Style>
-                <Style TargetType="{x:Type StackPanel}">
-                    <Setter Property="Orientation" Value="Horizontal" />
+                <Style TargetType="{x:Type DockPanel}">
+                    <Setter Property="LastChildFill" Value="True" />
                 </Style>
             </Grid.Resources>
             <Button Margin="10,10,0,0" x:Name="btnStart" Click="btnStart_Click" Grid.Column="0"
                     IsEnabled="{Binding Text.Length, ElementName=txtDocument}">
                 <DockPanel>
-                    <Image Stretch="None">
+                    <Image DockPanel.Dock="Left" Stretch="None">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Style.Triggers>
@@ -107,7 +109,7 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                    <TextBlock Margin="5,0,0,0">
+                    <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Center">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Style.Triggers>
@@ -128,10 +130,10 @@
             </Button>
             <Button Margin="5,10,0,0" Click="btnStop_Click" Grid.Column="1"
                     IsEnabled="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}">
-                <StackPanel>
-                    <Image Stretch="None" Source="Resources/stop.png" />
-                    <TextBlock Margin="5,0,0,0" Text="Stop" />
-                </StackPanel>
+                <DockPanel>
+                    <Image DockPanel.Dock="Left" Stretch="None" Source="Resources/stop.png" />
+                    <TextBlock DockPanel.Dock="Right" Text="Stop" HorizontalAlignment="Center" />
+                </DockPanel>
             </Button>
         </Grid>
 
