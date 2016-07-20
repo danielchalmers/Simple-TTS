@@ -52,7 +52,6 @@
                 <Style TargetType="ComboBox">
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="HorizontalAlignment" Value="Stretch" />
-                    <Setter Property="Height" Value="25" />
                 </Style>
             </Grid.Resources>
 
