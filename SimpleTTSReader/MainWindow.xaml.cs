@@ -239,5 +239,18 @@ namespace SimpleTTSReader
             txtDocument.SelectionStart = 0;
             txtDocument.Select(0, 0);
         }
+
+        private void MainWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.MediaPlayPause:
+                    ToggleState();
+                    break;
+                case Key.MediaStop:
+                    StopSpeech();
+                    break;
+            }
+        }
     }
 }

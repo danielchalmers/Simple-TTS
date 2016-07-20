@@ -10,7 +10,8 @@
         Width="{Binding Source={x:Static properties:Settings.Default}, Path=Width,Mode=TwoWay}"
         Height="{Binding Source={x:Static properties:Settings.Default}, Path=Height,Mode=TwoWay}"
         MinWidth="400" MinHeight="300"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        PreviewKeyDown="MainWindow_OnPreviewKeyDown">
     <Window.Resources>
         <local:SynthesizerStateIsNotReadyToBoolConverter x:Key="SynthesizerStateIsNotReadyToBoolConverter" />
         <local:SynthesizerStateIsNotReadyToVisibilityConverter x:Key="SynthesizerStateIsNotReadyToVisibilityConverter" />
