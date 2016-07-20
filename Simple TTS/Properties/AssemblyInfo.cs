@@ -10,11 +10,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Simple TTS Reader")]
+[assembly: AssemblyTitle("Simple TTS")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Daniel Chalmers Software")]
-[assembly: AssemblyProduct("Simple TTS Reader")]
+[assembly: AssemblyProduct("Simple TTS")]
 [assembly: AssemblyCopyright("© Daniel Chalmers 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

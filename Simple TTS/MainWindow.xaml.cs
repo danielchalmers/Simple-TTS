@@ -7,11 +7,11 @@ using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Win32;
-using SimpleTTSReader.Properties;
+using Simple_TTS.Properties;
 
 #endregion
 
-namespace SimpleTTSReader
+namespace Simple_TTS
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml

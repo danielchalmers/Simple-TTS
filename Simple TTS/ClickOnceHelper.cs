@@ -3,11 +3,11 @@
 using System;
 using System.Deployment.Application;
 using Microsoft.Win32;
-using SimpleTTSReader.Properties;
+using Simple_TTS.Properties;
 
 #endregion
 
-namespace SimpleTTSReader
+namespace Simple_TTS
 {
     public static class ClickOnceHelper
     {

@@ -4,7 +4,7 @@ using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Data;
 
-namespace SimpleTTSReader
+namespace Simple_TTS
 {
     public class SynthesizerStateIsNotReadyToBoolConverter : IValueConverter
     {

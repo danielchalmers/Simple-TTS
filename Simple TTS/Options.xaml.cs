@@ -2,11 +2,11 @@
 
 using System;
 using System.Windows;
-using SimpleTTSReader.Properties;
+using Simple_TTS.Properties;
 
 #endregion
 
-namespace SimpleTTSReader
+namespace Simple_TTS
 {
     /// <summary>
     ///     Interaction logic for Options.xaml

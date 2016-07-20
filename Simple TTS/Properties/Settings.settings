@@ -1,7 +1,7 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
 
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
-              GeneratedClassNamespace="SimpleTTSReader.Properties" GeneratedClassName="Settings">
+              GeneratedClassNamespace="Simple_TTS.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="Volume" Type="System.Int32" Scope="User">
@@ -19,7 +19,7 @@
     <Setting Name="Height" Type="System.Double" Scope="User">
       <Value Profile="(Default)">600</Value>
     </Setting>
-    <Setting Name="Gender" Type="SimpleTTSReader.VoiceGender" Scope="User">
+    <Setting Name="Gender" Type="Simple_TTS.VoiceGender" Scope="User">
       <Value Profile="(Default)">Male</Value>
     </Setting>
     <Setting Name="Launches" Type="System.Int32" Scope="User">

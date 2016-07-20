@@ -1,10 +1,10 @@
 ﻿#region
 
-using SimpleTTSReader.Properties;
-
 #endregion
 
-namespace SimpleTTSReader
+using Simple_TTS.Properties;
+
+namespace Simple_TTS
 {
     public static class SettingsHelper
     {

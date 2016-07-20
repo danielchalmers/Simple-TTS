@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimpleTTSReader.Properties {
+namespace Simple_TTS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -86,9 +86,9 @@ namespace SimpleTTSReader.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Male")]
-        public global::SimpleTTSReader.VoiceGender Gender {
+        public global::Simple_TTS.VoiceGender Gender {
             get {
-                return ((global::SimpleTTSReader.VoiceGender)(this["Gender"]));
+                return ((global::Simple_TTS.VoiceGender)(this["Gender"]));
             }
             set {
                 this["Gender"] = value;

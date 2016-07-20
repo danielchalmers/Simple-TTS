@@ -1,4 +1,4 @@
-﻿namespace SimpleTTSReader
+﻿namespace Simple_TTS
 {
     public enum VoiceGender
     {

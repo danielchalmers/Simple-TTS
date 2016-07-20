@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimpleTTSReader.Properties {
+namespace Simple_TTS.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SimpleTTSReader.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SimpleTTSReader.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Simple_TTS.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,7 +63,7 @@ namespace SimpleTTSReader.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {0} ({1})
         ///
-        ///Website: {2}
+        ///{2}
         ///Icons are made by Google from Flaticon and are licensed under CC BY 3.0
         ///
         ///{3}.
@@ -75,7 +75,7 @@ namespace SimpleTTSReader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Simple TTS Reader.
+        ///   Looks up a localized string similar to Simple TTS.
         /// </summary>
         public static string AppName {
             get {
@@ -84,7 +84,7 @@ namespace SimpleTTSReader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SimpleTTSReader.
+        ///   Looks up a localized string similar to SimpleTTS.
         /// </summary>
         public static string AppPathName {
             get {
@@ -93,7 +93,7 @@ namespace SimpleTTSReader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://github.com/danielchalmers/Simple-TTS-Reader/issues.
+        ///   Looks up a localized string similar to https://github.com/danielchalmers/Simple-TTS/issues.
         /// </summary>
         public static string GitHubIssues {
             get {
@@ -132,7 +132,7 @@ namespace SimpleTTSReader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://github.com/danielchalmers/Simple-TTS-Reader.
+        ///   Looks up a localized string similar to https://github.com/danielchalmers/Simple-TTS.
         /// </summary>
         public static string Website {
             get {

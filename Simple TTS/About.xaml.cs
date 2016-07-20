@@ -4,7 +4,7 @@ using System.Windows;
 
 #endregion
 
-namespace SimpleTTSReader
+namespace Simple_TTS
 {
     /// <summary>
     ///     Interaction logic for About.xaml

@@ -122,10 +122,10 @@
     <value>..\Resources\About.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Simple TTS Reader</value>
+    <value>Simple TTS</value>
   </data>
   <data name="AppPathName" xml:space="preserve">
-    <value>SimpleTTSReader</value>
+    <value>SimpleTTS</value>
   </data>
   <data name="pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -137,12 +137,12 @@
     <value>..\Resources\stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Website" xml:space="preserve">
-    <value>https://github.com/danielchalmers/Simple-TTS-Reader</value>
+    <value>https://github.com/danielchalmers/Simple-TTS</value>
   </data>
   <data name="WelcomeMessage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WelcomeMessage.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="GitHubIssues" xml:space="preserve">
-    <value>https://github.com/danielchalmers/Simple-TTS-Reader/issues</value>
+    <value>https://github.com/danielchalmers/Simple-TTS/issues</value>
   </data>
 </root>
