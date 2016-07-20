@@ -44,25 +44,21 @@
             </MenuItem>
             <MenuItem Header="_Playback">
                 <MenuItem Click="btnStart_Click">
-                    <MenuItem.Header>
-                        <TextBlock>
-                            <TextBlock.Style>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding SynthesizerState}" Value="Speaking">
-                                            <Setter Property="Text" Value="_Pause" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding SynthesizerState}" Value="Paused">
-                                            <Setter Property="Text" Value="_Play" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding SynthesizerState}" Value="Ready">
-                                            <Setter Property="Text" Value="_Play" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                    </MenuItem.Header>
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SynthesizerState}" Value="Speaking">
+                                    <Setter Property="Header" Value="_Pause" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding SynthesizerState}" Value="Paused">
+                                    <Setter Property="Header" Value="_Play" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding SynthesizerState}" Value="Ready">
+                                    <Setter Property="Header" Value="_Play" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
                 </MenuItem>
                 <MenuItem Header="_Stop" Click="btnStop_Click"
                           IsEnabled="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}" />
