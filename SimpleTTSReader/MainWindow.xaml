@@ -43,7 +43,7 @@
                 <MenuItem Header="Select _All" Command="SelectAll" />
             </MenuItem>
             <MenuItem Header="_Playback">
-                <MenuItem Click="btnStart_Click">
+                <MenuItem Click="btnStart_Click" IsEnabled="{Binding Text.Length, ElementName=txtDocument}">
                     <MenuItem.Style>
                         <Style TargetType="{x:Type MenuItem}">
                             <Style.Triggers>
@@ -87,7 +87,8 @@
                     <Setter Property="Orientation" Value="Horizontal" />
                 </Style>
             </Grid.Resources>
-            <Button Margin="10,10,0,0" x:Name="btnStart" Click="btnStart_Click" Grid.Column="0">
+            <Button Margin="10,10,0,0" x:Name="btnStart" Click="btnStart_Click" Grid.Column="0"
+                    IsEnabled="{Binding Text.Length, ElementName=txtDocument}">
                 <DockPanel>
                     <Image Stretch="None">
                         <Image.Style>
