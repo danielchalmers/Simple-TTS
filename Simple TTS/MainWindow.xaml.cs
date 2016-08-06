@@ -23,7 +23,6 @@ namespace Simple_TTS
         private Prompt _currentPrompt;
         private string _currentWord;
         private int _maxCharacters;
-        private int _speechLength;
         private SynthesizerState _synthesizerState;
         private int _wordOffset;
 
@@ -122,7 +121,6 @@ namespace Simple_TTS
         {
             CurrentWord = e.Text;
             CurrentCharacterIndex = e.CharacterPosition + e.Text.Length;
-            MaxCharacters = _speechLength;
             txtDocument.Select(e.CharacterPosition + _wordOffset, e.Text.Length);
         }
 
@@ -202,7 +200,7 @@ namespace Simple_TTS
             if (string.IsNullOrWhiteSpace(text))
                 return;
             _currentPrompt = new Prompt(text);
-            _speechLength = text.Length;
+            MaxCharacters = text.Length;
             _synthesizer.Rate = Settings.Default.Speed - 10;
             _synthesizer.Volume = Settings.Default.Volume;
 
@@ -220,6 +218,8 @@ namespace Simple_TTS
             _synthesizer.SpeakAsyncCancel(_currentPrompt);
             _currentPrompt = null;
             _synthesizer.Resume();
+            CurrentWord = string.Empty;
+            CurrentCharacterIndex = 0;
 
             btnStart.Focus();
         }
