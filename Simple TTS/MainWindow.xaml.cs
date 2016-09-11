@@ -115,6 +115,7 @@ namespace Simple_TTS
             Settings.Default.SelectionStart = txtDocument.SelectionStart;
             SettingsHelper.SaveSettings();
             StopSpeech();
+            _synthesizer.Dispose();
         }
 
         private void Synthesizer_OnSpeakProgress(object sender, SpeakProgressEventArgs e)
