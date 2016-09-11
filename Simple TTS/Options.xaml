@@ -69,7 +69,7 @@
 
             <TextBlock Grid.Row="6" Grid.Column="0" Text="Font Size:" />
             <TextBox Grid.Row="6" Grid.Column="2"
-                     Text="{Binding Source={x:Static p:Settings.Default}, Path=FontSize, Mode=TwoWay}" />
+                     Text="{Binding Source={x:Static p:Settings.Default}, Path=FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Row="1" Margin="0,15,0,0">
