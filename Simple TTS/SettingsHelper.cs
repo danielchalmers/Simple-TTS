@@ -11,8 +11,6 @@ namespace Simple_TTS
         public static void SaveSettings()
         {
             Settings.Default.Save();
-
-            ClickOnceHelper.SetRunOnStartup(Settings.Default.RunOnStartup);
         }
 
         public static void UpgradeSettings()
