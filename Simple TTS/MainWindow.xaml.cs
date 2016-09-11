@@ -45,7 +45,6 @@ namespace Simple_TTS
                 Settings.Default.Document = string.Format(Properties.Resources.WelcomeMessage, Environment.UserName,
                     AssemblyInfo.Version, Properties.Resources.GitHubIssues);
 
-                StartSpeech();
                 Settings.Default.Document +=
                     $"{Environment.NewLine}{Environment.NewLine}{AssemblyInfo.Copyright}";
                 Settings.Default.Document +=
