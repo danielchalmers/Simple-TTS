@@ -5,7 +5,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Volume" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">75</Value>
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="Speed" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
