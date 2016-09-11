@@ -150,7 +150,8 @@
                      SelectionOpacity="0.25"
                      Margin="10,10,10,5"
                      IsReadOnly="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}"
-                     Text="{Binding Path=Document, Source={x:Static properties:Settings.Default}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding Path=Document, Source={x:Static properties:Settings.Default}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}" />
         </Grid>
 
         <StatusBar Grid.Row="3">

@@ -26,6 +26,8 @@
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
                 <RowDefinition Height="15" />
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="Auto" SharedSizeGroup="options" />
             </Grid.RowDefinitions>
             <Grid.Resources>
                 <Style TargetType="TextBlock">
@@ -63,6 +65,10 @@
             <ComboBox x:Name="cbGender" Grid.Row="4" Grid.Column="2"
                       SelectedItem="{Binding Source={x:Static p:Settings.Default},
                                Path=Gender, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Font Size:" />
+            <TextBox Grid.Row="6" Grid.Column="2"
+                     Text="{Binding Source={x:Static p:Settings.Default}, Path=FontSize, Mode=TwoWay}" />
         </Grid>
 
         <Grid Row="1" Margin="0,15,0,0">
