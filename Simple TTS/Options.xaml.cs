@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.ComponentModel;
 using System.Windows;
 using Simple_TTS.Properties;
 
@@ -22,14 +23,18 @@ namespace Simple_TTS
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            Settings.Default.Save();
             DialogResult = true;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Settings.Default.Reload();
-            DialogResult = true;
+            DialogResult = false;
+        }
+
+        private void Options_OnClosing(object sender, CancelEventArgs e)
+        {
+            if (DialogResult != true)
+                Settings.Default.Reload();
         }
     }
 }
