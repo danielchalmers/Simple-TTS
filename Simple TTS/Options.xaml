@@ -9,26 +9,28 @@
         Title="Options"
         Width="350" SizeToContent="Height"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid IsSharedSizeScope="True" Margin="15,10,15,10">
+        <Grid IsSharedSizeScope="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="15" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
+                <RowDefinition Height="15" />
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
+                <RowDefinition Height="15" />
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
             </Grid.RowDefinitions>
             <Grid.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="Margin" Value="0,5,10,5" />
                     <Setter Property="Padding" Value="0" />
                 </Style>
                 <Style TargetType="TextBox">
@@ -48,22 +50,22 @@
             </Grid.Resources>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Volume:" />
-            <Slider Grid.Row="0" Grid.Column="1" Minimum="0" Maximum="100"
+            <Slider Grid.Row="0" Grid.Column="2" Minimum="0" Maximum="100"
                     Value="{Binding Source={x:Static p:Settings.Default},
                                Path=Volume, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Speed:" />
-            <Slider Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="20"
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Speed:" />
+            <Slider Grid.Row="2" Grid.Column="2" Minimum="0" Maximum="20"
                     Value="{Binding Source={x:Static p:Settings.Default},
                                Path=Speed, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Gender:" />
-            <ComboBox x:Name="cbGender" Grid.Row="2" Grid.Column="1"
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Gender:" />
+            <ComboBox x:Name="cbGender" Grid.Row="4" Grid.Column="2"
                       SelectedItem="{Binding Source={x:Static p:Settings.Default},
                                Path=Gender, Mode=TwoWay}" />
         </Grid>
 
-        <Grid Row="1" Margin="15,10,15,15">
+        <Grid Row="1" Margin="0,15,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="75" />
