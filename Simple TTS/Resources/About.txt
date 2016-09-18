@@ -1,6 +1,6 @@
 {0} ({1})
 
 {2}
-Icons are made by Google from Flaticon and are licensed under CC BY 3.0
+Icons are made by Google (design.google.com/icons)
 
 {3}
