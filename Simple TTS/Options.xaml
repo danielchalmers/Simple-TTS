@@ -18,16 +18,16 @@
         <Grid IsSharedSizeScope="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
-                <RowDefinition Height="15" />
+                <RowDefinition Height="10" />
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
-                <RowDefinition Height="15" />
+                <RowDefinition Height="10" />
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
-                <RowDefinition Height="15" />
+                <RowDefinition Height="10" />
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
             </Grid.RowDefinitions>
             <Grid.Resources>
