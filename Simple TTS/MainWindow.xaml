@@ -155,35 +155,49 @@
         </Grid>
 
         <StatusBar Grid.Row="3">
-            <StatusBarItem HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal"
-                            Visibility="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToVisibilityConverter}}">
-                    <TextBlock>
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0} of {1}">
-                                <Binding Path="CurrentCharacterIndex" />
-                                <Binding Path="MaxCharacters" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                    <Rectangle VerticalAlignment="Stretch" Width="1"
-                               Margin="5,0,5,0" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                    <TextBlock Text="{Binding CurrentWord}" TextTrimming="CharacterEllipsis" Width="100" />
-                </StackPanel>
-            </StatusBarItem>
-            <StatusBarItem HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Gender: " />
-                    <TextBlock Text="{Binding Path=Gender, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
-                    <Rectangle VerticalAlignment="Stretch" Width="1" Margin="5,0,5,0"
-                               Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                    <TextBlock Text="Speed: " />
-                    <TextBlock Text="{Binding Path=Speed, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
-                    <Rectangle VerticalAlignment="Stretch" Width="1" Margin="5,0,5,0"
-                               Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                    <TextBlock Text="Volume: " />
-                    <TextBlock Text="{Binding Path=Volume, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
-                </StackPanel>
+            <StatusBarItem HorizontalContentAlignment="Stretch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0"
+                          Visibility="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} of {1}">
+                                    <Binding Path="CurrentCharacterIndex" />
+                                    <Binding Path="MaxCharacters" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1"
+                                   Margin="5,0,5,0"
+                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                        <TextBlock Grid.Column="2" Text="{Binding CurrentWord}" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                        <TextBlock Text="Gender: " />
+                        <TextBlock
+                            Text="{Binding Path=Gender, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
+                        <Rectangle VerticalAlignment="Stretch" Width="1" Margin="5,0,5,0"
+                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                        <TextBlock Text="Speed: " />
+                        <TextBlock
+                            Text="{Binding Path=Speed, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
+                        <Rectangle VerticalAlignment="Stretch" Width="1" Margin="5,0,5,0"
+                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                        <TextBlock Text="Volume: " />
+                        <TextBlock
+                            Text="{Binding Path=Volume, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
+                    </StackPanel>
+                </Grid>
             </StatusBarItem>
         </StatusBar>
     </Grid>
