@@ -35,8 +35,6 @@ namespace Simple_TTS
             SettingsHelper.UpgradeSettings();
             Settings.Default.Launches++;
 
-            txtDocument.SelectionStart = Settings.Default.SelectionStart;
-
             _synthesizer = new SpeechSynthesizer();
             SetupSynthesizer();
 
@@ -44,6 +42,8 @@ namespace Simple_TTS
             {
                 ShowWelcomeMessage();
             }
+
+            txtDocument.SelectionStart = Settings.Default.SelectionStart;
 
             DataContext = this;
             txtDocument.Focus();
@@ -238,6 +238,7 @@ namespace Simple_TTS
 
         private void ShowWelcomeMessage()
         {
+            Settings.Default.SelectionStart = 0;
             Settings.Default.Document = string.Format(Properties.Resources.WelcomeMessage, Environment.UserName,
                 AssemblyInfo.Version, Properties.Resources.GitHubIssues);
 
