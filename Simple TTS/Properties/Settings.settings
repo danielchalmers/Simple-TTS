@@ -19,8 +19,8 @@
     <Setting Name="Height" Type="System.Double" Scope="User">
       <Value Profile="(Default)">600</Value>
     </Setting>
-    <Setting Name="Gender" Type="Simple_TTS.VoiceGender" Scope="User">
-      <Value Profile="(Default)">Male</Value>
+    <Setting Name="Gender" Type="System.Speech.Synthesis.VoiceGender" Scope="User">
+      <Value Profile="(Default)">NotSet</Value>
     </Setting>
     <Setting Name="Launches" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

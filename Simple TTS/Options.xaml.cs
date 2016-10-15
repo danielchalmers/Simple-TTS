@@ -2,6 +2,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Speech.Synthesis;
 using System.Windows;
 using Simple_TTS.Properties;
 

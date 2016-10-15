@@ -99,7 +99,6 @@
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Converters.cs" />
-    <Compile Include="Enumerations.cs" />
     <Compile Include="Options.xaml.cs">
       <DependentUpon>Options.xaml</DependentUpon>
     </Compile>

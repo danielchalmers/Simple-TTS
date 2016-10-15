@@ -85,10 +85,10 @@ namespace Simple_TTS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Male")]
-        public global::Simple_TTS.VoiceGender Gender {
+        [global::System.Configuration.DefaultSettingValueAttribute("NotSet")]
+        public global::System.Speech.Synthesis.VoiceGender Gender {
             get {
-                return ((global::Simple_TTS.VoiceGender)(this["Gender"]));
+                return ((global::System.Speech.Synthesis.VoiceGender)(this["Gender"]));
             }
             set {
                 this["Gender"] = value;
