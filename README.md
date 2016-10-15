@@ -1,4 +1,4 @@
-# Simple TTS Reader
-A simple Text to Speech reader app for Windows
+# Simple TTS
+A simple Text to Speech app for Windows
 
-Download links and more info: https://danielchalmers.github.io/Simple-TTS-Reader
+Download installer here: https://danielchalmers.github.io/Simple-TTS/publish/setup.exe
