@@ -160,6 +160,14 @@ namespace Simple_TTS
             }
         }
 
+        private void txtDocument_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (SynthesizerState == SynthesizerState.Speaking)
+            {
+                e.Handled = true;
+            }
+        }
+
         private void MenuItemAbout_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new About();
