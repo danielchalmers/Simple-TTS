@@ -16,6 +16,8 @@
         <simpleTts:SynthesizerStateIsNotReadyToBoolConverter x:Key="SynthesizerStateIsNotReadyToBoolConverter" />
         <simpleTts:SynthesizerStateIsNotReadyToVisibilityConverter
             x:Key="SynthesizerStateIsNotReadyToVisibilityConverter" />
+        <simpleTts:StringIsNotEmptyToVisibilityConverter
+            x:Key="StringIsNotEmptyToVisibilityConverter" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -179,8 +181,10 @@
                         </TextBlock>
                         <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1"
                                    Margin="5,0,5,0"
-                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
-                        <TextBlock Grid.Column="2" Text="{Binding CurrentWord}" TextTrimming="CharacterEllipsis" />
+                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"
+                                   Visibility="{Binding CurrentWord, Converter={StaticResource StringIsNotEmptyToVisibilityConverter}}" />
+                        <TextBlock Grid.Column="2" Text="{Binding CurrentWord}" TextTrimming="CharacterEllipsis"
+                                   Visibility="{Binding CurrentWord, Converter={StaticResource StringIsNotEmptyToVisibilityConverter}}" />
                     </Grid>
                     <StackPanel Grid.Column="2" Orientation="Horizontal">
                         <TextBlock Text="Gender: " />
