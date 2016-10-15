@@ -19,6 +19,7 @@ namespace Simple_TTS
         {
             InitializeComponent();
             cbGender.ItemsSource = Enum.GetValues(typeof (VoiceGender));
+            cbAge.ItemsSource = Enum.GetValues(typeof (VoiceAge));
             Settings.Default.Save();
         }
 

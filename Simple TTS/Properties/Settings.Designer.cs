@@ -142,5 +142,17 @@ namespace Simple_TTS.Properties {
                 this["FontSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("NotSet")]
+        public global::System.Speech.Synthesis.VoiceAge Age {
+            get {
+                return ((global::System.Speech.Synthesis.VoiceAge)(this["Age"]));
+            }
+            set {
+                this["Age"] = value;
+            }
+        }
     }
 }

@@ -188,7 +188,7 @@ namespace Simple_TTS
             MaxCharacters = text.Length;
             _synthesizer.Rate = Settings.Default.Speed;
             _synthesizer.Volume = Settings.Default.Volume;
-            _synthesizer.SelectVoiceByHints(Settings.Default.Gender);
+            _synthesizer.SelectVoiceByHints(Settings.Default.Gender, Settings.Default.Age);
             _synthesizer.SpeakAsync(_currentPrompt);
         }
 

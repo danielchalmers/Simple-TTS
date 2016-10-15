@@ -34,5 +34,8 @@
     <Setting Name="FontSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">12</Value>
     </Setting>
+    <Setting Name="Age" Type="System.Speech.Synthesis.VoiceAge" Scope="User">
+      <Value Profile="(Default)">NotSet</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
