@@ -33,13 +33,13 @@ namespace Simple_TTS
             InitializeComponent();
 
             SettingsHelper.UpgradeSettings();
-            Settings.Default.Launches++;
 
             _synthesizer = new SpeechSynthesizer();
             SetupSynthesizer();
 
-            if (Settings.Default.Launches == 1)
+            if (!Settings.Default.HasSeenWelcomeMessage)
             {
+                Settings.Default.HasSeenWelcomeMessage = true;
                 ShowWelcomeMessage();
             }
 

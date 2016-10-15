@@ -97,13 +97,13 @@ namespace Simple_TTS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int Launches {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HasSeenWelcomeMessage {
             get {
-                return ((int)(this["Launches"]));
+                return ((bool)(this["HasSeenWelcomeMessage"]));
             }
             set {
-                this["Launches"] = value;
+                this["HasSeenWelcomeMessage"] = value;
             }
         }
         

@@ -22,8 +22,8 @@
     <Setting Name="Gender" Type="System.Speech.Synthesis.VoiceGender" Scope="User">
       <Value Profile="(Default)">NotSet</Value>
     </Setting>
-    <Setting Name="Launches" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="HasSeenWelcomeMessage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Document" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
