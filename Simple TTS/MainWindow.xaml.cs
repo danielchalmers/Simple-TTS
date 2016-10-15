@@ -186,7 +186,7 @@ namespace Simple_TTS
             }
             _currentPrompt = new Prompt(text);
             MaxCharacters = text.Length;
-            _synthesizer.Rate = Settings.Default.Speed - 10;
+            _synthesizer.Rate = Settings.Default.Speed;
             _synthesizer.Volume = Settings.Default.Volume;
             _synthesizer.SelectVoiceByHints(Settings.Default.Gender);
             _synthesizer.SpeakAsync(_currentPrompt);

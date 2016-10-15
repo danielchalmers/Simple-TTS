@@ -58,7 +58,7 @@
                                Path=Volume, Mode=TwoWay}" />
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Speed:" />
-            <Slider Grid.Row="2" Grid.Column="2" Minimum="0" Maximum="20"
+            <Slider Grid.Row="2" Grid.Column="2" Minimum="-10" Maximum="10"
                     Value="{Binding Source={x:Static p:Settings.Default},
                                Path=Speed, Mode=TwoWay}" />
 
