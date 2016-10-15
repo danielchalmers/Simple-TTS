@@ -18,6 +18,11 @@
             x:Key="SynthesizerStateIsNotReadyToVisibilityConverter" />
         <simpleTts:StringIsNotEmptyToVisibilityConverter
             x:Key="StringIsNotEmptyToVisibilityConverter" />
+        <Style TargetType="Rectangle">
+            <Setter Property="Width" Value="1" />
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="Stroke" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -29,7 +34,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <Menu Grid.Column="0" Grid.Row="0">
             <MenuItem Header="_File">
                 <MenuItem Header="Save _As..." Click="MenuItemSaveAs_Click" />
@@ -74,10 +78,10 @@
                 <MenuItem Header="_About..." Click="MenuItemAbout_OnClick" />
             </MenuItem>
         </Menu>
-
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.Resources>
@@ -93,7 +97,7 @@
                     <Setter Property="LastChildFill" Value="True" />
                 </Style>
             </Grid.Resources>
-            <Button Margin="10,10,0,0" x:Name="btnStart" Click="btnStart_Click" Grid.Column="0"
+            <Button x:Name="btnStart" Click="btnStart_Click" Grid.Column="0"
                     IsEnabled="{Binding Text.Length, ElementName=txtDocument}">
                 <DockPanel>
                     <Image DockPanel.Dock="Left" Stretch="None">
@@ -132,7 +136,7 @@
                     </TextBlock>
                 </DockPanel>
             </Button>
-            <Button Margin="5,10,0,0" Click="btnStop_Click" Grid.Column="1"
+            <Button Click="btnStop_Click" Grid.Column="2"
                     IsEnabled="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}">
                 <DockPanel>
                     <Image DockPanel.Dock="Left" Stretch="None" Source="Resources/stop.png" />
@@ -140,22 +144,15 @@
                 </DockPanel>
             </Button>
         </Grid>
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtDocument" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0"
-                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                     LostFocus="txtDocument_OnLostFocus"
-                     PreviewMouseLeftButtonDown="txtDocument_OnPreviewMouseLeftButtonDown"
-                     SelectionOpacity="0.25"
-                     Margin="10,10,10,5"
-                     IsReadOnly="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}"
-                     Text="{Binding Path=Document, Source={x:Static properties:Settings.Default}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}" />
-        </Grid>
-
+        <TextBox Grid.Row="2" x:Name="txtDocument" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0"
+                 HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                 LostFocus="txtDocument_OnLostFocus"
+                 PreviewMouseLeftButtonDown="txtDocument_OnPreviewMouseLeftButtonDown"
+                 SelectionOpacity="0.25"
+                 Margin="10,0,10,5"
+                 IsReadOnly="{Binding SynthesizerState, Converter={StaticResource SynthesizerStateIsNotReadyToBoolConverter}}"
+                 Text="{Binding Path=Document, Source={x:Static properties:Settings.Default}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}" />
         <StatusBar Grid.Row="3">
             <StatusBarItem HorizontalContentAlignment="Stretch">
                 <Grid>
@@ -179,9 +176,7 @@
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
-                        <Rectangle Grid.Column="1" VerticalAlignment="Stretch" Width="1"
-                                   Margin="5,0,5,0"
-                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"
+                        <Rectangle Grid.Column="1"
                                    Visibility="{Binding CurrentWord, Converter={StaticResource StringIsNotEmptyToVisibilityConverter}}" />
                         <TextBlock Grid.Column="2" Text="{Binding CurrentWord}" TextTrimming="CharacterEllipsis"
                                    Visibility="{Binding CurrentWord, Converter={StaticResource StringIsNotEmptyToVisibilityConverter}}" />
@@ -190,13 +185,11 @@
                         <TextBlock Text="Gender: " />
                         <TextBlock
                             Text="{Binding Path=Gender, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
-                        <Rectangle VerticalAlignment="Stretch" Width="1" Margin="5,0,5,0"
-                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                        <Rectangle />
                         <TextBlock Text="Speed: " />
                         <TextBlock
                             Text="{Binding Path=Speed, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
-                        <Rectangle VerticalAlignment="Stretch" Width="1" Margin="5,0,5,0"
-                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                        <Rectangle />
                         <TextBlock Text="Volume: " />
                         <TextBlock
                             Text="{Binding Path=Volume, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />

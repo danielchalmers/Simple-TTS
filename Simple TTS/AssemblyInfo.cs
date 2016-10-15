@@ -18,9 +18,6 @@ namespace Simple_TTS
         public static string Copyright { get; } = GetAssemblyAttribute<AssemblyCopyrightAttribute>(a => a.Copyright);
         public static string Title { get; } = GetAssemblyAttribute<AssemblyTitleAttribute>(a => a.Title);
 
-        public static string Description { get; } =
-            GetAssemblyAttribute<AssemblyDescriptionAttribute>(a => a.Description);
-
         public static string CustomDescription { get; } = string.Format(Resources.About, Title, Version,
             Resources.Website, Copyright);
 

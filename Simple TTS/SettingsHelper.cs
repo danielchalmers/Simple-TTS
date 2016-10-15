@@ -25,8 +25,8 @@ namespace Simple_TTS
 
         public static void OpenOptions()
         {
-            var dialog = new Options();
-            dialog.ShowDialog();
+            var optionsDialog = new Options();
+            optionsDialog.ShowDialog();
         }
     }
 }

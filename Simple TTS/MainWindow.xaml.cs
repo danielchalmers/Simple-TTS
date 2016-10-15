@@ -1,8 +1,10 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Input;
@@ -36,19 +38,11 @@ namespace Simple_TTS
             txtDocument.SelectionStart = Settings.Default.SelectionStart;
 
             _synthesizer = new SpeechSynthesizer();
-            _synthesizer.SpeakCompleted += (sender, args) => ResetDocumentSelection();
-            _synthesizer.StateChanged += (sender, args) => SynthesizerState = args.State;
-            _synthesizer.SpeakProgress += Synthesizer_OnSpeakProgress;
+            SetupSynthesizer();
 
-            if (ClickOnceHelper.IsFirstLaunch)
+            if (Settings.Default.Launches == 1)
             {
-                Settings.Default.Document = string.Format(Properties.Resources.WelcomeMessage, Environment.UserName,
-                    AssemblyInfo.Version, Properties.Resources.GitHubIssues);
-
-                Settings.Default.Document +=
-                    $"{Environment.NewLine}{Environment.NewLine}{AssemblyInfo.Copyright}";
-                Settings.Default.Document +=
-                    $"{Environment.NewLine}{Environment.NewLine}(This message will only appear once.)";
+                ShowWelcomeMessage();
             }
 
             DataContext = this;
@@ -58,56 +52,44 @@ namespace Simple_TTS
         public SynthesizerState SynthesizerState
         {
             get { return _synthesizerState; }
-            set
-            {
-                if (_synthesizerState != value)
-                {
-                    _synthesizerState = value;
-                    RaisePropertyChanged(nameof(SynthesizerState));
-                }
-            }
+            private set { Set(ref _synthesizerState, value); }
         }
 
         public int CurrentCharacterIndex
         {
             get { return _currentCharacterIndex; }
-            set
-            {
-                if (_currentCharacterIndex != value)
-                {
-                    _currentCharacterIndex = value;
-                    RaisePropertyChanged(nameof(CurrentCharacterIndex));
-                }
-            }
+            private set { Set(ref _currentCharacterIndex, value); }
         }
 
         public string CurrentWord
         {
             get { return _currentWord; }
-            set
-            {
-                if (_currentWord != value)
-                {
-                    _currentWord = value;
-                    RaisePropertyChanged(nameof(CurrentWord));
-                }
-            }
+            private set { Set(ref _currentWord, value); }
         }
 
         public int MaxCharacters
         {
             get { return _maxCharacters; }
-            set
-            {
-                if (_maxCharacters != value)
-                {
-                    _maxCharacters = value;
-                    RaisePropertyChanged(nameof(MaxCharacters));
-                }
-            }
+            private set { Set(ref _maxCharacters, value); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool Set<T>(ref T field, T newValue = default(T), [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, newValue))
+            {
+                return false;
+            }
+            field = newValue;
+            RaisePropertyChanged(propertyName);
+            return true;
+        }
+
+        private void RaisePropertyChanged(string prop)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
@@ -122,11 +104,6 @@ namespace Simple_TTS
             CurrentWord = e.Text;
             CurrentCharacterIndex = e.CharacterPosition + e.Text.Length;
             txtDocument.Select(e.CharacterPosition + _wordOffset, e.Text.Length);
-        }
-
-        private void RaisePropertyChanged(string prop)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
         private void ToggleState()
@@ -165,7 +142,9 @@ namespace Simple_TTS
         {
             var dialog = new SaveFileDialog {Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"};
             if (dialog.ShowDialog() ?? false)
+            {
                 File.WriteAllText(dialog.FileName, Settings.Default.Document);
+            }
         }
 
         private void txtDocument_OnLostFocus(object sender, RoutedEventArgs e)
@@ -176,7 +155,9 @@ namespace Simple_TTS
         private void txtDocument_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (SynthesizerState == SynthesizerState.Speaking)
+            {
                 e.Handled = true;
+            }
         }
 
         private void MenuItemAbout_OnClick(object sender, RoutedEventArgs e)
@@ -194,11 +175,15 @@ namespace Simple_TTS
         {
             var selection = txtDocument.SelectionStart;
             if (selection >= Settings.Default.Document.Length || selection == -1)
+            {
                 selection = 0;
+            }
             var text = Settings.Default.Document.Substring(selection, Settings.Default.Document.Length - selection);
             _wordOffset = selection;
             if (string.IsNullOrWhiteSpace(text))
+            {
                 return;
+            }
             _currentPrompt = new Prompt(text);
             MaxCharacters = text.Length;
             _synthesizer.Rate = Settings.Default.Speed - 10;
@@ -214,7 +199,9 @@ namespace Simple_TTS
         private void StopSpeech()
         {
             if (_currentPrompt == null)
+            {
                 return;
+            }
             _synthesizer.SpeakAsyncCancel(_currentPrompt);
             _currentPrompt = null;
             _synthesizer.Resume();
@@ -251,6 +238,24 @@ namespace Simple_TTS
                     StopSpeech();
                     break;
             }
+        }
+
+        private void ShowWelcomeMessage()
+        {
+            Settings.Default.Document = string.Format(Properties.Resources.WelcomeMessage, Environment.UserName,
+                AssemblyInfo.Version, Properties.Resources.GitHubIssues);
+
+            Settings.Default.Document +=
+                $"{Environment.NewLine}{Environment.NewLine}{AssemblyInfo.Copyright}";
+            Settings.Default.Document +=
+                $"{Environment.NewLine}{Environment.NewLine}(This message will only appear once.)";
+        }
+
+        private void SetupSynthesizer()
+        {
+            _synthesizer.SpeakCompleted += (sender, args) => ResetDocumentSelection();
+            _synthesizer.StateChanged += (sender, args) => SynthesizerState = args.State;
+            _synthesizer.SpeakProgress += Synthesizer_OnSpeakProgress;
         }
     }
 }

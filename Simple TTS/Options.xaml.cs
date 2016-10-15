@@ -34,7 +34,9 @@ namespace Simple_TTS
         private void Options_OnClosing(object sender, CancelEventArgs e)
         {
             if (DialogResult != true)
+            {
                 Settings.Default.Reload();
+            }
         }
     }
 }

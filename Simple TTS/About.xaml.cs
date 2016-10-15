@@ -14,7 +14,6 @@ namespace Simple_TTS
         public About()
         {
             InitializeComponent();
-            txtAbout.Text = AssemblyInfo.CustomDescription;
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)

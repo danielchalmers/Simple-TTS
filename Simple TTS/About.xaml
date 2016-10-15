@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:properties="clr-namespace:Simple_TTS.Properties"
+        xmlns:simpleTts="clr-namespace:Simple_TTS"
         mc:Ignorable="d"
         Title="About"
         Width="500" SizeToContent="Height"
@@ -19,7 +20,8 @@
         <TextBlock Grid.Row="0"
                    Text="{x:Static properties:Resources.AppName}" FontSize="24" VerticalAlignment="Center"
                    HorizontalAlignment="Left" />
-        <TextBox x:Name="txtAbout" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource InfoTextbox}" />
+        <TextBox Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource InfoTextbox}"
+                 Text="{Binding Source={x:Static simpleTts:AssemblyInfo.CustomDescription}, Mode=OneWay}" />
         <Button Grid.Row="4" Content="OK" Width="75" Height="23"
                 IsDefault="True" IsCancel="True" Click="btnOK_Click"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" />
