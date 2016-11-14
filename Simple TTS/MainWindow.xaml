@@ -42,6 +42,7 @@
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Header="_Undo" Command="Undo" />
+                <MenuItem Header="_Redo" Command="Redo" />
                 <Separator />
                 <MenuItem Header="Cu_t" Command="Cut" />
                 <MenuItem Header="_Copy" Command="Copy" />
