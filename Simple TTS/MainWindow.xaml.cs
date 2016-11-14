@@ -204,6 +204,7 @@ namespace Simple_TTS
             catch (ArgumentException)
             {
             }
+            _synthesizer.SetOutputToDefaultAudioDevice();
             _synthesizer.SpeakAsync(_currentPrompt);
         }
 
