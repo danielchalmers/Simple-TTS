@@ -29,8 +29,6 @@
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="Auto" SharedSizeGroup="options" />
-                <RowDefinition Height="10" />
-                <RowDefinition Height="Auto" SharedSizeGroup="options" />
             </Grid.RowDefinitions>
             <Grid.Resources>
                 <Style TargetType="TextBlock">
@@ -64,18 +62,12 @@
                     Value="{Binding Source={x:Static p:Settings.Default},
                                Path=Speed, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Gender:" />
-            <ComboBox x:Name="cbGender" Grid.Row="4" Grid.Column="2"
-                      SelectedItem="{Binding Source={x:Static p:Settings.Default},
-                               Path=Gender, Mode=TwoWay}" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Voice:" />
+            <ComboBox x:Name="cbVoice" Grid.Row="4" Grid.Column="2"
+                      SelectedItem="{Binding Source={x:Static p:Settings.Default}, Path=Voice, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="Age:" />
-            <ComboBox x:Name="cbAge" Grid.Row="6" Grid.Column="2"
-                      SelectedItem="{Binding Source={x:Static p:Settings.Default},
-                               Path=Age, Mode=TwoWay}" />
-
-            <TextBlock Grid.Row="8" Grid.Column="0" Text="Font Size:" />
-            <TextBox Grid.Row="8" Grid.Column="2"
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Font Size:" />
+            <TextBox Grid.Row="6" Grid.Column="2"
                      Text="{Binding Source={x:Static p:Settings.Default}, Path=FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 

@@ -19,9 +19,6 @@
     <Setting Name="Height" Type="System.Double" Scope="User">
       <Value Profile="(Default)">600</Value>
     </Setting>
-    <Setting Name="Gender" Type="System.Speech.Synthesis.VoiceGender" Scope="User">
-      <Value Profile="(Default)">NotSet</Value>
-    </Setting>
     <Setting Name="HasSeenWelcomeMessage" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -34,8 +31,8 @@
     <Setting Name="FontSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">12</Value>
     </Setting>
-    <Setting Name="Age" Type="System.Speech.Synthesis.VoiceAge" Scope="User">
-      <Value Profile="(Default)">NotSet</Value>
+    <Setting Name="Voice" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

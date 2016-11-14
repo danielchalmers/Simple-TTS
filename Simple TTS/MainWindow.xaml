@@ -183,6 +183,10 @@
                                    Visibility="{Binding CurrentWord, Converter={StaticResource StringIsNotEmptyToVisibilityConverter}}" />
                     </Grid>
                     <StackPanel Grid.Column="2" Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Path=Voice, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />
+                        <Rectangle
+                            Visibility="{Binding Path=Voice, Converter={StaticResource StringIsNotEmptyToVisibilityConverter}, Mode=OneWay, Source={x:Static properties:Settings.Default}}" />
                         <TextBlock Text="Speed: " />
                         <TextBlock
                             Text="{Binding Path=Speed, Source={x:Static properties:Settings.Default}, Mode=OneWay}" />

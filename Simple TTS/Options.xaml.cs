@@ -1,7 +1,8 @@
 ﻿#region
 
-using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Speech.Synthesis;
 using System.Windows;
 using Simple_TTS.Properties;
@@ -15,11 +16,10 @@ namespace Simple_TTS
     /// </summary>
     public partial class Options : Window
     {
-        public Options()
+        public Options(IEnumerable<InstalledVoice> installedVoices)
         {
             InitializeComponent();
-            cbGender.ItemsSource = Enum.GetValues(typeof (VoiceGender));
-            cbAge.ItemsSource = Enum.GetValues(typeof (VoiceAge));
+            cbVoice.ItemsSource = installedVoices.Where(x => x.Enabled).Select(x => x.VoiceInfo.Name);
             Settings.Default.Save();
         }
 

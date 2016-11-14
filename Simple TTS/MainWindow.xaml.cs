@@ -176,7 +176,8 @@ namespace Simple_TTS
 
         private void MenuItemOptions_OnClick(object sender, RoutedEventArgs e)
         {
-            SettingsHelper.OpenOptions();
+            var optionsDialog = new Options(_synthesizer.GetInstalledVoices());
+            optionsDialog.ShowDialog();
         }
 
         private void StartSpeech()
@@ -196,7 +197,13 @@ namespace Simple_TTS
             MaxCharacters = text.Length;
             _synthesizer.Rate = Settings.Default.Speed;
             _synthesizer.Volume = Settings.Default.Volume;
-            _synthesizer.SelectVoiceByHints(Settings.Default.Gender, Settings.Default.Age);
+            try
+            {
+                _synthesizer.SelectVoice(Settings.Default.Voice);
+            }
+            catch (ArgumentException)
+            {
+            }
             _synthesizer.SpeakAsync(_currentPrompt);
         }
 

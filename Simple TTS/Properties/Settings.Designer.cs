@@ -85,18 +85,6 @@ namespace Simple_TTS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NotSet")]
-        public global::System.Speech.Synthesis.VoiceGender Gender {
-            get {
-                return ((global::System.Speech.Synthesis.VoiceGender)(this["Gender"]));
-            }
-            set {
-                this["Gender"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool HasSeenWelcomeMessage {
             get {
@@ -145,13 +133,13 @@ namespace Simple_TTS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NotSet")]
-        public global::System.Speech.Synthesis.VoiceAge Age {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Voice {
             get {
-                return ((global::System.Speech.Synthesis.VoiceAge)(this["Age"]));
+                return ((string)(this["Voice"]));
             }
             set {
-                this["Age"] = value;
+                this["Voice"] = value;
             }
         }
     }

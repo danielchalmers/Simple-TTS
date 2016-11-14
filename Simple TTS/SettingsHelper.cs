@@ -22,11 +22,5 @@ namespace Simple_TTS
                 Settings.Default.Save();
             }
         }
-
-        public static void OpenOptions()
-        {
-            var optionsDialog = new Options();
-            optionsDialog.ShowDialog();
-        }
     }
 }
