@@ -121,7 +121,7 @@ namespace Simple_TTS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("12")]
+        [global::System.Configuration.DefaultSettingValueAttribute("14")]
         public int FontSize {
             get {
                 return ((int)(this["FontSize"]));

@@ -29,7 +29,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="FontSize" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">12</Value>
+      <Value Profile="(Default)">14</Value>
     </Setting>
     <Setting Name="Voice" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
