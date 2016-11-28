@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<configuration>
+  <configSections>
+    <sectionGroup name="userSettings"
+                  type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="Simple_TTS.Properties.Settings"
+               type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+               allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.2" />
+  </startup>
+  <userSettings>
+    <Simple_TTS.Properties.Settings>
+      <setting name="Volume" serializeAs="String">
+        <value>100</value>
+      </setting>
+      <setting name="Speed" serializeAs="String">
+        <value>0</value>
+      </setting>
+      <setting name="MustUpgrade" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="Width" serializeAs="String">
+        <value>800</value>
+      </setting>
+      <setting name="Height" serializeAs="String">
+        <value>600</value>
+      </setting>
+      <setting name="HasSeenWelcomeMessage" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="Document" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="SelectionStart" serializeAs="String">
+        <value>0</value>
+      </setting>
+      <setting name="FontSize" serializeAs="String">
+        <value>14</value>
+      </setting>
+      <setting name="Voice" serializeAs="String">
+        <value />
+      </setting>
+    </Simple_TTS.Properties.Settings>
+  </userSettings>
+  <system.net>
+    <settings>
+      <httpWebRequest useUnsafeHeaderParsing="true" />
+    </settings>
+  </system.net>
+</configuration>
