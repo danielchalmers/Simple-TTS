@@ -6,9 +6,13 @@
         xmlns:properties="clr-namespace:Simple_TTS.Properties"
         xmlns:simpleTts="clr-namespace:Simple_TTS"
         mc:Ignorable="d"
-        Title="About"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Title>
+        <MultiBinding StringFormat="{}About {0}">
+            <Binding Source="{x:Static properties:Resources.AppName}" />
+        </MultiBinding>
+    </Window.Title>
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
