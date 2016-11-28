@@ -26,8 +26,8 @@
     <UpdatePeriodically>true</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://danielchalmers.github.io/Simple-TTS/publish/</InstallUrl>
-    <UpdateUrl>http://danielchalmers.github.io/Simple-TTS/publish/</UpdateUrl>
+    <InstallUrl>https://danielchalmers.github.io/Simple-TTS/publish/</InstallUrl>
+    <UpdateUrl>https://danielchalmers.github.io/Simple-TTS/publish/</UpdateUrl>
     <ProductName>Simple TTS</ProductName>
     <PublisherName>Daniel Chalmers</PublisherName>
     <ApplicationRevision>1</ApplicationRevision>
